@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Expédition</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH </a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="comptabilite.html">Opérations Courantes</a></li>
+            <li><a href="inventaire.html">Opérations non Courantes</a></li>
+            <li><a href="declaration.html">IS</a></li>
+            <li><a href="tableau-bord.html">Tableaux de bord</a></li>
+        </ul>
+        <ul  class="sub-modules">
+        <li><a href="comptabilite.html">Achats & Ventes</a></li>
+        <li><a href="comptabilite-reglement.html">Réglements</a></li>
+        <li><a href="comptabilite-paie.html">Paie</a></li>
+        <li><a href="comptabilite-tva.html">TVA et autres taxes</a></li>
+        <li><a href="immobilisations.html">Immobilisations</a></li>
+        <li><a href="banques.html">Banques</a></li>
+    </ul>
+
+        <div class="row-ecriture">
+            <div class="column-immob1">
+            <table class="ecriture-comptable">
+                <tr><th colspan="7">Ecriture Comptable N°:</th></tr>
+                <tr><th></th><th colspan="3">Debit</th><th colspan="3">Credit</th></tr>
+                <tr><td>Date <td>Code</td><td>Libellé</td><td>Montant</td><td>Code</td><td>Libellé</td><td>Montant</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>Libellé</td><td colspan="7"></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="compt--btn">Comptabiliser</button></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="compt-modify-btn">Modifier</button></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="comt-save-btn">Enregistrer</button></td></tr>
+            </table>
+            </div>
+              <div class="column-immob2">
+             <table class="lfactures">
+                <tr><td>N°Immobilisation</td><td>Type Bien</td><td>Classe Bilan</td><td>N°Facture</td><td>Date d'entrée</td><td>Date prévue d'utilisation </td></tr>
+                 <tr><td><input size="4" value="0000"></td><td><input size="4"></td><td><input size="4"></td><td><input size="4"></td><td><input size="4"></td><td><input size="4"></td></tr>
+                 <tr><td>Valeur actuelle</td><td>Valeur résiduelle prévisionnelle</td><td>Durée de vie probable</td><td>Durée de vie de l'entreprise</td><td>Unités d'oeuvres totales</td><td>Mode d'amortissement</td></tr>
+                 <tr><td><input size="4"></td><td><input size="4"></td><td><input size="4"></td><td><input size="4"></td><td><input size="4"></td><td><input size="4"></td></tr>
+                </table>
+                <li class="lfactures" >
+                    <button>Nouveau</button><button>Annuler</button><button>Modifier</button><button>Enregistrer</button>
+                </li>
+
+              </div>
+
+            </div>
+            <li class="lfactures">
+                <button >Ceder</button><break><button>Mise hors service</button>
+            </li>
+            <table class="lfactures">
+             <tr><td>N°Immobilisation</td><td>Type Bien</td><td>Classe Bilan</td><td>N°Facture</td><td>Date d'entrée</td><td>Date prévue d'utilisation </td><td>Valeur résiduelle prévisionnelle</td><td>Valeur actuelle</td><td>Montant amortissable</td><td>Durée de vie probable</td><td>Durée de vie de l'entreprise</td><td>Unités d'oeuvres totales</td><td>Mode d'amortissement</td></tr>
+                <tr><td></td><td>Frais préliminaire</td><td>en non-valeurs</td><td>-</td><td>-</td><td>05</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td>Charges à répartir sur plusieurs exercices</td><td>incorporelles</td><td>-</td><td>-</td><td>5</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td>Brevet,marque,droit et valeur similaire</td><td>corporelles</td><td>-</td><td>-</td><td>5</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td>Construction</td><td>financieres</td><td>-</td><td>-</td><td>25</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td>Matériel et outillage</td><td>-</td><td>-</td><td>-</td><td>10</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td>Matériel de Transport</td><td>-</td><td>-</td><td>-</td><td>5</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td>Mobilier de bureau</td><td>-</td><td>-</td><td>-</td><td>10</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td>Matériel de bureau</td><td>-</td><td>-</td><td>-</td><td>10</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td>Matériel informatique</td><td>-</td><td>-</td><td>-</td><td>3 à 5</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td>Agencement et aménagement divers</td><td>-</td><td>-</td><td>-</td><td>10</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td>Autre mobilier et matériel de bureau</td><td>-</td><td>-</td><td>-</td><td>10</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td colspan="8">il faut afficher la VE(saisie,calculée) selon le type d'immobilisation</td></tr>
+                <tr><td colspan="8">il faut afficher les durées de vie ainsi que la classe du bilan par défaut selon le type de bien immobilisée</td></tr>
+                <tr><td></td><td colspan="7">Total</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+
+
+            </table>
+
+
+    </body>
+</html>

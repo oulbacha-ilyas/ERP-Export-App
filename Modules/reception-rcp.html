@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Reception</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH</a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="reception-rcp.html">Réceptions</a></li>
+            <li><a href="reception-factures.html">Saisie des factures</a></li>
+            <li><a href="liste-rt.html">Retours</a></li>
+        </ul>
+
+        <div class="table-group-container">
+            <table class="reception-table">
+            <tr><td class="th1" colspan="2"> Bon de réception</td></tr>
+            <tr><td></td><td></td></tr>
+            <tr><td>N°Bon de réception:</td><td><input type="number" id="n-brp" size="12" value="00000">      </td></tr>
+            <tr><td>N°Bon de commande</td><td><input type="number" id="n-brp"size="12">      </td></tr>
+            <tr><td>N°Fournisseur</td><td><input type="number" id="n-bc"size="12">       </td></tr>
+            <tr><td>N°Article         :</td><td><input type="number" id="n-frn"size="12">      </td></tr>
+            <tr><td>Poids Brut        :</td><td><input type="number" id="n-artc"size="12">     </td></tr>
+            <tr><td>Tarre du véhicule :</td><td><input type="number" id="poids-br"size="12">   </td></tr>
+            <tr><td>Tarre de caisse   :</td><td><input type="number" id="tarre-vhc"size="12">  </td></tr>
+            <tr><td>Tarre de palette  :</td><td><input type="number" id="tarre-csse"size="12"> </td></tr>
+            <tr><td>Nombre de caisses :</td><td><input type="number" id="tarre-pal"size="12">  </td></tr>
+            <tr><td>Nombre de palettes:</td><td><input type="number" id="nbre-csse"size="12">  </td></tr>
+            <tr><td>Poids Net         :</td><td><input type="number" id="nbre-pal"size="12">   </td></tr>
+            <tr><td>Date de réception :</td><td><input type="number" id="poids-net"size="12">  </td></tr>
+            <tr><td>Matricule Véhicule:</td><td><input type="datetime" id="dte-rcp"size="12">  </td></tr>
+
+            </table>
+            <table class="reception-table">
+            <tr><td class="th2" colspan="2">  Fiche d'agrégation</td></tr>
+            <tr><td>N°Agrégation :        </td><td><input type="" id="n-agr"size="12" value="0000"></tr>
+            <tr><td>N°Bon de réception :   </td><td><input type="" id="n-brp"size="12">           </td></tr>
+            <tr><td>Quantité Agrée(kg) :   </td><td><input type="" id="qnt-agr"size="12">         </td></tr>
+            <tr><td>N°Article :            </td><td><input type="" id="n-artc"size="12">          </td></tr>
+            <tr><td>Taille d'échantillon : </td><td><input type="" id="tlle-ech"size="12">        </td></tr>
+            <tr><td>Etat Phytosanitaire :  </td><td><input type="text" id="et-pht"size="12">      </td></tr>
+            <tr><td>Etat Physique :        </td><td><input type="text" id="et-phs"size="12">      </td></tr>
+            <tr><td>Etat Visuel :          </td><td><input type="text" id="et-vs"size="12">       </td></tr>
+            <tr><td>Etat de caisses :      </td><td><input type="text" id="et-csse"size="12">     </td></tr>
+            <tr><td>Etat de Palettes :     </td><td><input type="text" id="et-pal"size="12">      </td></tr>
+            <tr><td>Etat de véhicules :    </td><td><input type="text" id="et-vhc"size="12">      </td></tr>
+            <tr><td>Date Agrégation :      </td><td><input type="datetime" id="dte-agr"size="12"> </td></tr>
+            <tr></tr>
+            </table>
+            <div class="button-group-right">
+                <button class="new-btn" type="button" onclick="" id="br-new-btn">Nouveau</button>
+                <button type="button" onclick="" id="br-save-btn">Enregistrer</button>
+                <button class="cancel-btn" type="button" onclick="" id="br-cancel-btn">Annuler</button>
+            </div>
+        </div>
+        <ul  class="sub-modules">
+            <li><a href="reception-rcp.html">Réceptions</a></li>
+            <li><a href="liste-agr.html">Agrégations</a></li>
+        </ul>
+        <table class="lreceptions">
+          <tbody>
+            <tr><td>N°BC</td><td>Date Réception</td><td>N°Réception</td><td>N°Fournisseur</td><td>Nom Fournisseur</td><td>N°Article</td><td>Nom Artilce</td><td>Poids Brut</td><td>Poids Net</td></tr>
+            <tr><td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+    </body>
+</html>

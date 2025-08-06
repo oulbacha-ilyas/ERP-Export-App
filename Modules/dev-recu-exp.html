@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Expédition</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH </a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="expedition-prep.html">Préparation des expéditions</a></li>
+            <li><a href="expedition-logistique.html">Logistique et Transport</a></li>
+            <li><a href="expedition.html">Suivi des expéditions</a></li>
+            <li><a href="expedition-ded.html">Dedouanement et Transit</a></li>
+
+        </ul>
+        <div class="table-group-container">
+          <table class="reception-table">
+          <tr><td class="th2" colspan="19">Liste des expéditions</td></tr>
+          <tr><td>N°Expédition</td><td>Date de Départ</td><td>N°Commande</td><td>Destination</td><td>Mode Transport</td><td>Transport de </td><td>Prix de Transport</td><td>Devise</td><td>A charge de</td><td>Payé Par</td><td>Matricule</td><td>Frais de transit</td><td>Devise</td><td>A charge de</td><td>Payé Par</td><td>Total Port</td><td>Nombre palettes</td><td>Client</td><td>Transporteur</td></tr>
+          <tr><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>confirmé</td><td></td></tr>
+          <tr><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>encore</td><td></td></tr>
+          <tr><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>refusé</td><td></td></tr>
+          <tr><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td colspan="10">Total</td><td>-</td></tr>
+          <tr><td colspan="16">commander le transport aprés avoir su quel mode de transport est demandé et avec quelle combinaison</td></tr>
+           <tr><td colspan="16" >calculer le montant de transport pour chaque commande client</td></tr>
+           <tr><td colspan="16">Apres négociation des conditions d'expedition(prix,mode,repartition) la préparation pourrait change et repartie à nouveau </td></tr>
+           <tr><td colspan="16">Envoyer la liste des expéditions confirmées à la palettisation </td></tr>
+
+      </table>
+      <div class="button-group-right">
+          <button class="new-btn" type="button" onclick="" id="bc-save-btn">Regrouper</button>
+          <button type="button" onclick="" id="bc-cancel-btn">Créer Devis</button>
+      </div>
+    </div>
+        <div class="table-group-container">
+          <table class="reception-table">
+              <tr><td class="th2" colspan="2">Mise à jour infos des expéditions</td></tr>
+              <tr><td>N°Expédition:</td><td><input type="" id="n-ver-inp" size="5" value="V encore"></td></tr>
+              <tr><td>N°Commande:</td><td><input type="" id="n-ver-inp" size="5" value="1/2/tout"></td></tr>
+              <tr><td>Mode Transport:</td><td><input type="" id="n-pal-inp" size="5" ></td></tr>
+              <tr><td>Transport de:</td><td><input type="" id="type-pal-inp" size="5"></td></tr>
+              <tr><td>Matricule:</td><td><input type="" id="n-prd-inp" size="5"></td></tr>
+              <tr><td>A charge de:</td><td><input type="" id="n-prd-inp" size="5"></td></tr>
+              <tr><td>Prix HT</td><td><input type="" id="n-prd-inp" size="5"></td></tr>
+              <tr><td>Devise</td><td><input type="" id="n-prd-inp" size="5"></td></tr>
+              <tr><td>Payé Par:</td><td><input type="" id="n-prd-inp" size="5"></td></tr>
+              <tr><td>Frais de transit:</td><td><input type="" id="n-prd-inp" size="5"></td></tr>
+              <tr><td>A charge de :</td><td><input type="" id="n-prd-inp" size="5"></td></tr>
+              <tr><td>Payé Par:</td><td><input type="" id="n-prd-inp" size="5"></td></tr>
+              <tr><td>Frais de port:</td><td><input type="" id="nom-prd-inp" size="5"></td></tr>
+          </table>
+          <div class="button-group-right">
+              <button class="new-btn" type="button" onclick="" id="bc-save-btn">Enregistrer</button>
+              <button type="button" onclick="" id="bc-cancel-btn">Annuler</button>
+              <button class="cancel-btn" type="button" onclick="" id="bc-cancel-btn">Dupliquer</button>
+          </div>
+          </div>
+            <ul  class="sub-modules">
+                <li><a href="expedition-logistique.html">Devis Envoyés</a></li>
+                <li><a href="dev-recu-exp.html">Devis Recus</a></li>
+            </ul>
+            <div class="table-group-container">
+              <table class="reception-table">
+               <tr><td>N°Devis</td><td>Date réponse</td><td>N°Expédition</td><td>Délai</td><td>Port</td><td>Devise</td><td>TVA</td><td>Transit</td><td>Assurance</td><td>Total</td><td>Coût Unitaire</td>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+               <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+            </table>
+            <div class="button-group-right">
+                <button class="new-btn" type="button" onclick="" id="bc-save-btn">Commander</button>
+            </div>
+          </div>
+    </body>
+</html>

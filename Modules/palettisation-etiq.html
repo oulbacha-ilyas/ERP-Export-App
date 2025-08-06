@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Palettisation</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH </a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="palettisation-etiq.html">Etiquettage</a></li>
+
+        </ul>
+        <div class="table-group-container">
+        <table class="reception-table">
+            <tr><td class="th1" colspan="11">Liste des expéditions pretes</td></tr>
+            <tr><td>N°Expédition</td><td>Date de Départ<td>Destination</td><td>Mode Transport</td><td>N°Commande</td><td>Nom Client</td><td>N°Produit</td><td>Nom Produit</td><td>Qualité</td><td>Type Palette</td><td>Nombre Palettes</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td colspan="11">Total</td></tr>
+        </table>
+        <div class="button-group-right">
+            <button class="new-btn" type="button" onclick="" id="pal-add-btn">Etiquetter</button>
+        </div>
+        </div>
+
+        <div class="table-group-container">
+        <table class="reception-table">
+                <tr><td class="th1" colspan="2">Etiquettage Palettes</td></tr>
+                <tr><td>N°palette:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                <tr><td>Destination:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                <tr><td>Nom Client:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                <tr><td>Nom Produit:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                <tr><td>Nombre Colis:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                <tr><td>Type Colis :</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                <tr><td>Type Palette :</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                <tr><td>Poids Brut:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                <tr><td>Poids Net:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                <tr><td>Date Départ:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                <tr><td>Température Palette:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                <tr><td>N°Expédition:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+            </table>
+            <table class="reception-table">
+                    <tr><td class="th2" colspan="2">Etiquettage Colis</td></tr>
+                    <tr><td>N°Colis:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                    <tr><td>Nom Produit</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                    <tr><td>Importer N°Pal de liste</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                    <tr><td>Qualité</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                    <tr><td>Poids Commercial</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                    <tr><td>Poids Net:</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+                    <tr><td>Type Colis :</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+            </table>
+            <div class="button-group-right">
+                <button class="new-btn" type="button" onclick="" id="pal-print-btn">Imprimer</button>
+                <button class="new-btn" type="button" onclick="" id="pal-add-btn">Nouveau</button>
+                <button class="new-btn" type="button" onclick="" id="pal-cancel-btn">Annuler</button>
+            </div>
+        </div>
+
+    </body>
+</html>

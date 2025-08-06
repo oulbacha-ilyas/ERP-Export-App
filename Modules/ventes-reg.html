@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Stock</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH </a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="ventes.html">Commandes</a></li>
+            <li><a href="ventes-suivi.html">Suivi des commandes</a></li>
+            <li><a href="facturation-vente.html">Facturation</a></li>
+            <li><a href="ventes-reg.html">Suivi des réglements</a></li>
+
+        </ul>
+        <div class="table-group-container">
+            <table class="reception-table">
+            <tr><td class="th1" colspan="13">Liste des réglements</td></tr>
+            <tr><td>Date Réglement </td><td>N°Réglement</td><td>N°Facture</td><td>Montant réglement</td><td>Devise</td><td>Cours de Change</td><td>Montant(MAD)</td><td>Mode Paiment</td><td>Operateur</td><td>Notification</td><td>Remise</td><td>Encaissement</td><td>Date Encaissement</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td></td></tr>
+            <tr><td colspan="13">Total</td></tr>
+            </table>
+          </div>
+
+         <div class="table-group-container">
+            <table class="reception-table">
+            <tr><td class="th1" colspan="2">Saisie des réglements</td></tr>
+            <tr><td>N°Réglement:</td><td><input type="" id="n-reg-input" size="12" value="0000"></td></tr>
+            <tr><td>N°Facture:</td><td><input type="" id="n-facture-input" size="12"></td></tr>
+            <tr><td>Mode paiement:</td><td><input type="" id="mntdev-reg-input" size="12"></td></tr>
+            <tr><td>Opérateur:</td><td><input type="" id="cours-input" size="12"></td></tr>
+            <tr><td>N°Document(LC/Cheque):</td><td><input type="" id="mntmad-reg-input" size="12" ></td></tr>
+            <tr><td>Montant</td><td><input type="" id="mode-reg-input" size="12"></td></tr>
+            <tr><td>Devise:</td><td><input type="" id="echeance-reg-input" size="12"></td></tr>
+            <tr><td>Cours de change:</td><td><input type="" id="echeance-reg-input" size="12"></td></tr>
+            <tr><td>Montant(MAD)</td><td><input type="" id="operateur-reg-input" size="12"></td></tr>
+            <tr><td>Echéance:</td><td><input type="" id="ordre-reg-input"size="12" ></td></tr>
+            <tr><td>Bordereau(PDF):</td><td><input type="" id="n-comd-input" size="12"></td></tr>
+            <tr><td>Date réglement:</td><td><input type="" id="n-comd-input" size="12"></td></tr>
+            </table>
+            <div class="button-group-right">
+                <button class="new-btn" type="button" onclick="" id="bc-new-btn">Nouveau</button>
+                <button type="button" onclick="" id="bc-save-btn">Enregistrer</button>
+                <button class="cancel-btn" type="button" onclick="" id="bc-cancel-btn">Annuler</button>
+                <button class="update-btn" type="button" onclick="" id="bc-update-btn">Actualiser</button>
+            </div>
+        </div>
+        <table class="reception-table">
+            <tr><td class="th1" colspan="14">Tableau de bord des réglements</td></tr>
+            <tr><td>Date Facture</td><td>N°Facture</td><td>Nom Client</td><td>N°Produit</td><td>Nom Produit</td><td>Montant Commandes</td><td>Retours</td><td>RRR</td><td>Escompte</td><td>Réglements</td><td>Total dû</td><td>Pourcentage</td><td>Echéance réglement</td><td>Nombre Jours</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td colspan="14">Total</td></tr>
+        </table>
+    </div>
+
+    </body>
+</html>

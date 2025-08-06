@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Expédition</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH </a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="comptabilite.html">Opérations Courantes</a></li>
+            <li><a href="inventaire.html">Opérations non Courantes</a></li>
+            <li><a href="declaration.html">IS</a></li>
+            <li><a href="tableau-bord.html">Tableaux de bord</a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="comptabilite.html">Achats & Ventes</a></li>
+            <li><a href="comptabilite-reglement.html">Réglements</a></li>
+            <li><a href="comptabilite-paie.html">Paie</a></li>
+            <li><a href="comptabilite-tva.html">TVA et autres taxes</a></li>
+            <li><a href="immobilisations.html">Immobilisations</a></li>
+            <li><a href="banques.html">Banques</a></li>
+        </ul>
+        <div class="row-banque">
+              <div class="column-banque1">
+                <table class="lfactures">
+                    <tr><td>Date</td><td>N°Opérationt</td><td>Type</td><td>N°Document/Objet</td><td>Echéance</td><td>N°Emetteur</td><td>Nom </td><td>N°Bénéficiaire</td><td>Nom </td><td>Opérateur</td><td>Situation</td><td>Montant</td><td>Devise</td><td>Cours</td><td>Montant(MAD)</td><td>Intérêts bancaires</td><td>Frais et Commissions</td><td>Services Bancaires</td><td>TVA</td><td>Montant TTC</td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>-</td><td>-</td><td>-</td><td>Notifié</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>-</td><td>-</td><td>-</td><td>A remettre</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>-</td><td>-</td><td>-</td><td>A encaisser</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>-</td><td>-</td><td>-</td><td>Encaissé</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td colspan="19">les frais bancaires et l'avancement des LC/Cheques/CREDOC sont saisie ici et apparaissent dans la comptabilité.Le nombre de ces documents,leurs écheances ainsi que leurs montants sont calculés sur la base du tableau de bord des commandes</td></tr>
+                    <tr><td></td><td colspan="8">Les retards/refus/omissions doivent donner lieu à des escomptes</td></tr>
+
+                    <tr><td></td><td colspan="7">Total</td><td>-</td><td>-</td><td></td><td></td></tr>
+
+
+                </table>
+              </div>
+              <div class="column-banque2">
+                <table >
+                    <tr><td>N°Opération:</td><td><input type="" id="n-reg-input" size="6" value="00000"></td><td><button   type="button" id="reg-save-btn">Enregistrer</button></td></tr>
+                    <tr><td>Type:</td><td><input type="" id="mntdev-reg-input" size="6"></td><td></td></tr>
+                    <tr><td>N°Document:</td><td><input type="" id="cours-input" size="6"></td><td></td></tr>
+                    <tr><td>Echéance:</td><td><input type="" id="cours-input" size="6"></td><td></td></tr>
+                    <tr><td>N°Emetteur:</td><td><input type="" id="cours-input" size="6"></td><td></td></tr>
+                    <tr><td>N°Béneficiaire:</td><td><input type="" id="cours-input" size="6"></td><td></td></tr>
+                    <tr><td>Opérateur:</td><td><input type="" id="mntmad-reg-input" size="6" ></td><td></td></tr>
+                    <tr><td>Montant:</td><td><input type="" id="mntmad-reg-input" size="6" ></td><td></td></tr>
+                    <tr><td>Devise:</td><td><input type="" id="mode-reg-input" size="6"></td></tr>
+                    <tr><td>Cours:</td><td><input type="" id="echeance-reg-input" size="6"></td></tr>
+                    <tr><td>Montant(MAD):</td><td><input type="" id="operateur-reg-input" size="6"></td></tr>
+                    <tr><td>Bordereau(PDF):</td><td><input type="upload" id="n-comd-input" size="6"></td></tr>
+                </table>
+
+              </div>
+            </div>
+            <table class="ecriture-comptable">
+                <tr><td>N°Opération</td><td>Montant<td>Inérêts bancaires</td><td>Frais et Commissions</td><td>Services Bancaires</td><td>TVA</td><td>Net à Recevoir/Payer</td></tr>
+                <tr><td>Selected</td><td></td><td><input class="" id="interet-reg-input"></td><td><input class="" id="frais-reg-input"></td><td><input class="" id="services-reg-input"></td><td></td><td></td><td><button class="add-btn" id="reg-save-btn">Enregistrer</button></td><td><button class="add-btn" id="reg-cancel-btn">Annuler</button></td></tr>
+            </table>
+
+    </body>
+</html>

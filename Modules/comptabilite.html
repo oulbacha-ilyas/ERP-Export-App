@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Expédition</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH </a></li>
+        </ul>
+        <ul   class="sub-modules">
+            <li><a href="comptabilite.html">Opérations Courantes</a></li>
+            <li><a href="inventaire.html">Opérations non Courantes</a></li>
+            <li><a href="declaration.html">IS</a></li>
+            <li><a href="tableau-bord.html">Tableaux de bord</a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="comptabilite.html">Achats & Ventes</a></li>
+            <li><a href="comptabilite-reglement.html">Réglements</a></li>
+            <li><a href="comptabilite-paie.html">Paie</a></li>
+            <li><a href="comptabilite-tva.html">TVA et autres taxes</a></li>
+            <li><a href="immobilisations.html">Immobilisations</a></li>
+            <li><a href="banques.html">Banques</a></li>
+
+
+
+        </ul>
+        <table class="ecriture-comptable">
+            <tr><th colspan="15">Facture DOIT</th></tr>
+            <tr><th colspan="2">Nature d'opération</th><th colspan="3">Objet</th><th colspan="2">Réduction</th><th>Majoration</th><th colspan="3">Transport</th><th colspan="2">A charge du</th><th colspan="2">Port</th></tr>
+            <tr><td>Achat</td><td>Vente<td>Marchandise</td><td>Emballages</td><td>Matieres et Fournitures</td><td>Commerciale(RRR)</td><td>Financiere</td><td>Majoration TVA</td><td>Du client</td><td>Du fournisseur</td><td>Du tier</td><td> Fournisseur</td><td> client</td><td>Payé</td><td>Dû</td></tr>
+            <tr><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+        </table>
+        <div class="row-ecriture">
+            <div class="column-ecr1">
+            <table class="ecriture-comptable">
+                <tr><th colspan="7">Ecriture Comptable N°:</th></tr>
+                <tr><th></th><th colspan="3">Debit</th><th colspan="3">Credit</th></tr>
+                <tr><td>Date <td>Code</td><td>Libellé</td><td>Montant</td><td>Code</td><td>Libellé</td><td>Montant</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>Libellé</td><td colspan="7"></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="compt--btn">Comptabiliser</button></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="compt-modify-btn">Modifier</button></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="comt-save-btn">Enregistrer</button></td></tr>
+            </table>
+            </div>
+              <div class="column-ecr2">
+                <table class="lfactures">
+                    <tr><th colspan="2"></th><th colspan="3">Client/Fournisseur</th><th></th><th colspan="5">Réductions</th><th colspan="">Majorations</th><th colspan="2">Change</th><th colspan="3">Autres</th></tr>
+                    <tr><td>Date</td><td>N°Facture</td><td>Type</td><td>Num</td><td>Nom </td><td>Montant</td><td>RRR</td><td>Net commercial</td><td>Escompte</td><td>Net Financier</td><td>Port</td><td>Montant TTC</td><td>Devise</td><td>Cours</td><td>Transport de </td><td>A charge de</td><td>Payé Par</td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+                    <tr><td></td><td colspan="7">Total</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+
+                </table>
+              </div>
+
+            </div>
+            <table class="ecriture-comptable">
+                <tr><th colspan="15">Facture AVOIR</th></tr>
+                <tr><th colspan="2">Nature d'opération</th><th colspan="3">Objet</th><th colspan="2">Réduction</th><th>Majoration</th><th colspan="3">Transport</th><th colspan="2">A charge du</th><th colspan="2">Port</th></tr>
+                <tr><td>Achat</td><td>Vente<td>Marchandise</td><td>Emballages</td><td>Matieres et Fournitures</td><td>Commerciale(RRR)</td><td>Financiere</td><td>Majoration TVA</td><td>Du client</td><td>Du fournisseur</td><td>Du tier</td><td>Fournisseur</td><td>Client</td><td>Payé</td><td>Dû</td></tr>
+                <tr><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+            </table>
+
+    </body>
+</html>

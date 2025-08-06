@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Devis et Commandes</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH</a></li>
+
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="devis-comd.html">Devis&Commandes</a></li>
+            <li><a href="commandes-remb.html">Remboursements</a></li>
+
+        </ul>
+
+            <div class="table-group-container">
+                <table class="reception-table">
+                    <tr><td>Date Remboursement </td><td>N°Remboursement</td><td>N°Facture</td><td>Montant Remboursement</td><td>Mode Paiment</td><td>Echéance</td><td>Operateur</td><td>N°Document(LC/chéque)</td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td colspan="6">Total</td></tr>
+                </table>
+           </div>
+           <div class="table-group-container">
+                <table class="reception-table">
+                    <tr><td>N°Réglement:</td><td><input type="" id="n-reg-input" size="6"></td></tr>
+                    <tr><td>N°Facture:</td><td><input type="" id="n-facture-input" size="6"></td></tr>
+                    <tr><td>Mode paiement:</td><td><input type="" id="mode-reg-input" size="6"></td></tr>
+                    <tr><td>Opérateur:</td><td><input type="" id="operateur-reg-input" size="6"></td></tr>
+                    <tr><td>N°Document(LC/Cheque):</td><td><input type="" id="operateur-reg-input" size="6"></td></tr>
+                    <tr><td>Montant:</td><td><input type="" id="mntdev-reg-input" size="6"></td></tr>
+                    <tr><td>Echéance:</td><td><input type="upload" id="n-comd-input" size="6"></td></tr>
+                    <tr><td>Bordereau(PDF):</td><td><input type="upload" id="n-comd-input" size="6"></td></tr>
+                    <tr><td>Date remboursement:</td><td><input type="upload" id="n-comd-input" size="6"></td></tr>
+
+                </table>
+                <div class="button-group-right">
+                    <button class="new-btn" type="button" onclick="" id="reg-save-btn">Enregistrer</button>
+                    <button type="button" onclick="" id="reg-cancel-btn">Annuler</button>
+                </div>
+              </div>
+              <div class="table-group-container">
+                   <table class="reception-table">
+                    <tr><th colspan="14">Tableau de bord des réglements</th></tr>
+                    <tr><td>Date Facture</td><td>N°Facture</td><td>Nom Fournisseur</td><td>N°Article</td><td>Nom Article</td><td>Montant Commandes</td><td>Retours</td><td>RRR</td><td>Escompte</td><td>Réglements</td><td>Total restant</td><td>Pourcentage</td><td>Echéance remboursement</td><td>Nombre Jours</td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td colspan="8">Le responsable envoie un etat des dettes au comptable et lui demande un portefeuille de LC/Cheque/main levée caisse,celui-ci les saisie dans "banque" et apparaissent sous"N°Document".Seulement les LC/ML doivent s"afficher dans la liste des choix</td></tr>
+                    <tr><td>Le comptabme effectue une gestion previsionnellle de la tresorie et envoie une liste de LC/mains levées</td></tr>
+                    <TR><TD>Afficher les factures DOIT (comptabilisées) liées à leurs fcatures AVOIR(comptabilisées) pour mettre a jour les montants dus minitieusement.Les deux factures sont liées par lememe N°Brp</TD></TR>
+                    <tr><td colspan="7">Total</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                </table>
+            </div>
+
+            </body>
+        </html>

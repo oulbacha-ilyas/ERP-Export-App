@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Expédition</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH </a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="expedition-prep.html">Préparation des expéditions</a></li>
+            <li><a href="expedition-logistique.html">Logistique et Transport</a></li>
+            <li><a href="expedition.html">Suivi des expéditions</a></li>
+            <li><a href="expedition-ded.html">Dedouanement et Transit</a></li>
+
+
+        </ul>
+          <table class="reception-table">
+            <tr><td>N°Expédition</td><td>Date de Départ<td>Destination</td><td>Mode Transport</td><td>N°Commande</td><td>Nom Client</td><td>N°Produit</td><td>Nom Produit</td><td>Qualité</td><td>Type Palette</td><td>Nombre Palettes</td><td>En charge</td><td>Pré-acheminement</td><td>Transit</td><td>Post-acheminement</td><td>Arrivée</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+            <tr><td colspan="10">Total</td><td>-</td><td></td><td></td><td>-</td><td></td><td></td></tr>
+
+        </table>
+        <div class="table-group-container">
+        <table class="reception-table">
+          <tr><td class="th1" colspan="2">Saisie des retours</td></tr>
+          <tr><td>N°Bon de retour</td><td><input type="" id="n-dev"size="12"></td></tr>
+          <tr><td>N°expédition</td><td><input type="" id="n-dev"size="12"></td></tr>
+          <tr><td>N°Client</td><td><input type="" id="n-dev"size="12"></td></tr>
+          <tr><td>N°palette 1</td><td><input type="" id="n-dev"size="12"></td></tr>
+          <tr><td>N°palette 2</td><td><input type="" id="n-dev"size="12"></td></tr>
+          <tr><td>N°palette 3</td><td><input type="" id="n-dev"size="12"></td></tr>
+          <tr><td>Quantité retournée</td><td ><input type="" id="n-dev"size="12"></td></tr>
+          <tr><td>Motif de rejet</td><td><input type="" id="n-dev"size="12"></td></tr>
+          <tr><td>Date de retour</td><td><input type="" id="n-dev"size="12"></td></tr>
+
+        </table>
+        <div class="button-group-right">
+            <button class="new-btn" type="button" onclick="" id="bc-add-btn">Nouveau</button>
+            <button type="button" onclick="" id="bc-save-btn">Enregistrer</button>
+            <button type="button" onclick="" id="bc-cancel-btn">Annuler</button>
+        </div>
+        </div>
+
+        <ul  class="sub-modules">
+            <li><a >Retours de produits finis</a></li>
+        </ul>
+        <div class="table-group-container">
+          <table class="reception-table">
+            <tr><td>N°Bon de retour</td><td>N°expédition<td>N°Client</td><td>N°s palettes</td><td>Quantité retournée</td><td>Motif de rejet</td><td>Date de retour</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td colspan="7">Total</td></tr>
+        </table>
+        </div>
+    </body>
+</html>

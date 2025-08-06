@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Expédition</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH </a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="comptabilite.html">Opérations Courantes</a></li>
+            <li><a href="inventaire.html">Opérations non Courantes</a></li>
+            <li><a href="declaration.html">IS</a></li>
+            <li><a href="tableau-bord.html">Tableaux de bord</a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="amortissement.html">Amortissements</a></li>
+            <li><a href="provisions.html">Provisions</a></li>
+            <li><a href="charges-et-produits.html">Charges et Produits</a></li>
+            <li><a href="stock.html">Stock</a></li>
+        </ul>
+
+
+        <div class="row-prov">
+            <div class="column-prov1">
+            <table class="ecriture-comptable">
+                <tr><th colspan="7">Ecriture Comptable N°:</th></tr>
+                <tr><th></th><th colspan="3">Debit</th><th colspan="3">Credit</th></tr>
+                <tr><td>Date <td>Code</td><td>Libellé</td><td>Montant</td><td>Code</td><td>Libellé</td><td>Montant</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>Libellé</td><td colspan="7"></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="compt--btn">Comptabiliser</button></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="compt-modify-btn">Modifier</button></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="comt-save-btn">Enregistrer</button></td></tr>
+            </table>
+            </div>
+              <div class="column-prov2">
+                  <li class="lfactures"><button>Annuler l'ancienne provision</button><button>Dépréciation irrévocable</button><input value="la charge réellement supportée"></li>
+                <table class="lfactures">
+                    <tr><th colspan="3">Identifiants</th><th colspan="5" >Calcul de la provision</th><th colspan="2">Dotation</th></tr>
+                    <tr><td>Identifiant</td><td>Type Bien</td><td>Classe Bilan</td><td>Valeur d'entrée</td><td>Cumul d'amortissements </td><td>Valeur actuelle</td><td>Dépreciation de l'année</td><td>Ancienne dépreciation</td><td>Dotation</td><td>Reprise</td></tr>
+                    <tr><td></td><td></td><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td></td><td>Charges à répartir sur plusieurs exercices</td><td>incorporelles</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td></td><td>Brevet,marque,droit et valeur similaire</td><td>corporelles</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td></td><td>Construction</td><td>financieres</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td></td><td>Matériel et outillage</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td></td><td>Matériel de Transport</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td></td><td>Mobilier de bureau</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td></td><td>Matériel de bureau</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td></td><td>Matériel informatique</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td></td><td>Agencement et aménagement divers</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td></td><td>Autre mobilier et matériel de bureau</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td></tr>
+                    <tr><td colspan="8">Pour les Risques et Charges,les dépréciations sont égales aux montants des dépréciations</td></tr>
+                    <tr><td colspan="8">Pour les immobs NON amortissables,elle est égale à la différences entre la VE et la VA</td></tr>
+                    <tr><td colspan="8">Pour les immobs amortissables,elle est égale à la différences entre la VNA(VE-CAmort) et la VA</td></tr>
+                    <tr><td colspan="8">les VA et les dépréciations sont saisies directement sur le tableau la fin de l'année</td></tr>
+                    <tr><td>le buttopn "annuler provision" doit permettre d'annuler les provisions concerant les charges,risques et pertes de créances définitives ainsi que la cession d'immobilisation</td></tr>
+                    <tr><td></td><td colspan="7">Total</td><td>-</td><td></td></tr>
+
+
+                </table>
+
+              </div>
+
+            </div>
+
+
+    </body>
+</html>

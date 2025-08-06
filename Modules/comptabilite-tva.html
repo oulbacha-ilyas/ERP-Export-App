@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Comptabilité</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH </a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="comptabilite.html">Opérations Courantes</a></li>
+            <li><a href="inventaire.html">Opérations non Courantes</a></li>
+            <li><a href="declaration.html">IS</a></li>
+            <li><a href="tableau-bord.html">Tableaux de bord</a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="comptabilite.html">Achats & Ventes</a></li>
+            <li><a href="comptabilite-reglement.html">Réglements</a></li>
+            <li><a href="comptabilite-paie.html">Paie</a></li>
+            <li><a href="comptabilite-tva.html">TVA et autres taxes</a></li>
+            <li><a href="immobilisations.html">Immobilisations</a></li>
+            <li><a href="banques.html">Banques</a></li>
+          </ul>
+
+        <div class="row-ecriture-tva">
+            <div class="column-tva1">
+            <table class="ecriture-comptable">
+                <tr><th colspan="7">Ecriture Comptable N°</th></tr>
+                <tr><th></th><th colspan="3">Debit</th><th colspan="3">Credit</th></tr>
+                <tr><td>Date <td>Code</td><td>Libellé</td><td>Montant</td><td>Code</td><td>Libellé</td><td>Montant</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>Libellé</td><td colspan="7"><input class="" id="reg-libel-input"></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="compt--btn">Comptabiliser</button></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="compt-modify-btn">Modifier</button></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="comt-save-btn">Enregistrer</button></td></tr>
+            </table>
+            </div>
+              <div class="column-tva2">
+                <table class="lfactures">
+                    <tr><td>Mois</td><td>TVA Facturé</td><td>TVA Recupérable sur charges</td><td>TVA Récuperable sur immobilisations</td><td>Credit TVA</td><td>TVA Due</td><td>Situation</td><td>Majorations</td><td>Pénalités</td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td>declarée</td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td>réglée</td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td>en retard</td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td></tr>
+                    <tr><td>TOTAL</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td></tr>
+
+                </table>
+              </div>
+
+            </div>
+
+
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Reception</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH</a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="reception-rcp.html">Réceptions</a></li>
+            <li><a href="reception-factures.html">Saisie des factures</a></li>
+            <li><a href="liste-rt.html">Retours</a></li>
+        </ul>
+
+                <div class="table-group-container">
+                    <table class="reception-table">
+                    <tr><td class="th3" colspan="2">Bon de retour</td></tr>
+                    <tr><td>N°Bon de retour      </td><td><input type="" id="n-br"size="12" value="0000"></td></tr>
+                    <tr><td>N°Agrégation :       </td><td><input type="" id="n-agr"size="12"></td></tr>
+                    <tr><td>N°Article :          </td><td><input type="" id="n-arc"size="12"></td></tr>
+                    <tr><td>N°Bon de réception : </td><td><input type="" id="n-brp"size="12"></td></tr>
+                    <tr><td>N°Fournisseur :      </td><td><input type="" id="n-frn"size="12"></td></tr>
+                    <tr><td>Date de retour :     </td><td><input type="" id="dte-ret"size="12"></td></tr>
+                    <tr><td>Quantité retournée   </td><td><input type="" id="qnt-ret"size="12"></td></tr>
+                    <tr><td>Motif de rejet       </td><td><input type="" id="mtf-ret"size="12"></td></tr>
+                    <tr><td>Matricule du véhicule</td><td><input type="" id="mat-vhc"size="12"></td></tr>
+                    </table>
+                    <table class="reception-table">
+                        <tr><td class="th2" colspan="2">Facturation des retours</td></tr>
+                        <tr><td>N°FactureA:</td><td><input type="" id="n-facture-input" size="4"></td></tr>
+                        <tr><td>N°Bon de retour:</td><td><input type="" id="n-comd-input" size="4"></td></tr>
+                        <tr><td>RRR:</td><td><input type="" id="rrr-rtr-input" size="4"></td></tr>
+                        <tr><td>Montant RRR:</td><td><input type="" id="mnt-rrr-input" size="4"></td></tr>
+                        <tr><td>Motif:</td><td><input type="" id="mnt-rrr-input" size="4"></td></tr>
+                        <tr><td>Escompte de remboursement:</td><td><input type="" id="mnt-rrr-input" size="4"></td></tr>
+                        <tr><td>Montant escompte:</td><td><input type="" id="mnt-rrr-input" size="4"></td></tr>
+                        <tr><td>Total réduction:</td><td><input type="" id="mnt-rrr-input" size="4"></td></tr>
+                        <tr><td>Date :</td><td><input type="" id="mnt-rrr-input" size="4"></td></tr>
+
+                    </table>
+                    <div class="button-group-right">
+                        <button class="new-btn" type="button" onclick="" id="br-new-btn">Nouveau</button>
+                        <button type="button" onclick="" id="br-save-btn">Enregistrer</button>
+                        <button class="cancel-btn" type="button" onclick="" id="br-cancel-btn">Annuler</button>
+                    </div>
+                </div>
+        <ul  class="sub-modules">
+            <li><a >Liste retours</a></li>
+        </ul>
+        <table class="reception-table">
+            <th class="head-rcp"><td>Date</td><td>N°Bon de retour</td><td>N°Réception</td><td>N°Fournisseur</td><td>Nom Fournisseur</td><td>N°Article</td><td>Nom Artilce</td><td>N°Agrégation</td><td>Qunatité retournée(kg)</td><td>Montant</td><td>RRR</td><td>Escompte de remboursement</td><td>Montant Escompte</td><td>Motif</td></th>
+            <tbody>
+            <tr><td>1</td><td>A</td><td></td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td colspan="8">Les factures avoirs completes sont affichées sur "Saisie Factures"</td></tr>
+        </tbody>
+        </table>
+
+    </body>
+</html>

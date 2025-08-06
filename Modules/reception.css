@@ -1,0 +1,416 @@
+/* --- Base Reset & Global Styles --- */
+body {
+    font-family: 'Consolas', 'Roboto Mono', 'Ubuntu Mono', monospace;
+    line-height: 1.6;
+    color: #e0e0e0;
+    background-color: #1a1a2e;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* --- Navigation (Global) --- */
+ul.modules {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #0f3460;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    min-height: 60px;
+    border-bottom: 2px solid #50e3c2;
+}
+
+ul.modules li {
+    margin: 0;
+}
+
+ul.modules li a {
+    color: #e0e0e0;
+    padding: 15px 30px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+ul.modules li a:hover {
+    background-color: #50e3c2;
+    color: #1a1a2e;
+}
+
+ul.modules li a.active-link {
+    background-color: #7a46c3;
+    color: #fff;
+    border-bottom: 3px solid #50e3c2;
+    padding-bottom: 12px;
+}
+
+/* Sub-navigation */
+ul { /* This targets all other ULs, including your second one */
+    list-style-type: none;
+    margin: 20px 150px 20px 60px;
+    padding: 7px;
+    background-color: #2e2e4e;
+    border-radius: 6px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border: 1px solid #4a4a6e;
+}
+
+ul li {
+    display: inline-block;
+    padding: 0;
+    margin: 0 8px;
+}
+
+ul li a {
+    color: #a0a0a0;
+    padding: 8px 15px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+ul li a:hover {
+    background-color: #7a46c3;
+    color: #fff;
+}
+
+ul li a.active-link {
+    background-color: #50e3c2;
+    color: #1a1a2e;
+    font-weight: bold;
+}
+/* NOW TARGETING THE NEW CLASS DIRECTLY */
+.sub-modules {
+    list-style-type: none;
+    margin: 10px auto; /* Centered horizontally */
+    max-width: 1200px; /* Aligned with max-width of main-content-wrapper */
+    padding: 7px; /* Keep internal padding */
+    background-color: #2e2e4e;
+    border-radius: 6px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border: 1px solid #4a4a6e;
+}
+
+.sub-modules li { /* Apply to list items within sub-modules */
+    display: inline-block;
+    padding: 0;
+    margin: 0 8px;
+}
+
+.sub-modules li a { /* Apply to links within sub-modules */
+    color: #a0a0a0;
+    padding: 8px 15px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.sub-modules li a:hover {
+    background-color: #7a46c3;
+    color: #fff;
+}
+
+.sub-modules li a.active-link {
+    background-color: #50e3c2;
+    color: #1a1a2e;
+    font-weight: bold;
+}
+/* --- Container for Form Tables and Buttons (New Layout) --- */
+.table-group-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: calc(100% - 300px);
+    margin: 20px 60px;
+    position: relative;
+}
+
+/* --- Form Tables (`.reception-table`) within the container --- */
+.table-group-container .reception-table {
+    flex: 1 1 40%; /* Adjusted from 45% to give less initial horizontal space */
+    border-collapse: collapse;
+    background-color: #282844;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid #4a4a6e;
+    table-layout: fixed; /* KEPT: Forces columns to respect specified widths */
+    width: 100%; /* Ensures table uses all available flex space */
+}
+.table-group-container .lreceptions {
+    flex: 1 1 40%; /* Adjusted from 45% to give less initial horizontal space */
+    border-collapse: collapse;
+    background-color: #282844;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid #4a4a6e;
+    table-layout: fixed; /* KEPT: Forces columns to respect specified widths */
+    width: 100%; /* Ensures table uses all available flex space */
+}
+/* Table cells (`td`) for form tables */
+.reception-table td {
+    padding: 3px 2px; /* Reduced horizontal padding for tighter cells */
+    border: 1px solid #3a3a5e;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.9em;
+    color: #d0d0d0;
+    /* white-space: nowrap; (You commented this out, which is good for shrinking) */
+}
+
+/* Explicit width for the first column (labels) to control its 'length' */
+.reception-table td:first-child {
+    width: 120px; /* ADJUSTED: This is the explicit width for your label column. Tune this value! */
+    /* If labels are long and you want them to wrap, ensure white-space: nowrap; is NOT active for this rule */
+}
+
+/* The second column (input fields) will automatically take the remaining space
+   because table-layout: fixed is applied and only the first column has a specific width. */
+
+
+/* Table Header Cells (`th`) for form tables */
+.reception-table .th1,
+.reception-table .th2,
+.reception-table .th3 {
+    background-color: #0f3460;
+    color: #e0e0e0;
+    font-weight: 300;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.2em;
+    border-color: #50e3c2;
+    border-width: 0 1px 2px 1px;
+    text-transform: uppercase;
+}
+.reception-table .th1 { background-color: #50e3c2; border-color: #40c0a0; color: #1a1a2e;}
+.reception-table .th2 { background-color: #7a46c3; border-color: #6a3aa0; color: #fff;}
+.reception-table .th3 { background-color: #ff8c42; border-color: #e07030; color: #1a1a2e;}
+
+
+/* Input fields within the form tables */
+table.reception-table input[type="number"],
+table.reception-table input[type="text"],
+table.reception-table input[type="datetime"],
+table.reception-table input[type=""] {
+    width: 100%; /* ADJUSTED: Make inputs fill 100% of their now-correctly-sized cell */
+    /* max-width: 100%; (Can be removed as width: 100% makes it redundant) */
+    padding: 5px 2px; /* Reduced horizontal padding for inputs */
+    border: 1px solid #5a5a7a;
+    background-color: #1f1f3a;
+    color: #f0f0f0;
+    border-radius: 4px;
+    font-size: 0.9em;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+table.reception-table input:focus {
+    border-color: #50e3c2;
+    box-shadow: 0 0 0 3px rgba(80, 227, 194, 0.4);
+    outline: none;
+    background-color: #25254a;
+}
+
+/* --- Button Group (`.button-group-right`) --- */
+.button-group-right {
+    position: absolute;
+    top: 100px;
+    right: -170px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 15px;
+}
+
+/* General button styling */
+.button-group-right button {
+    border-radius: 4px;
+    padding: 10px 18px;
+    font-size: 0.88em;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+    margin: 0;
+    min-width: 130px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+}
+
+.button-group-right button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.button-group-right button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Specific button colors (techy palette) */
+.button-group-right button[type="button"]:not([class]),
+.button-group-right button#rc-save-btn,
+.button-group-right button#fag-save-btn,
+.button-group-right button#br-save-btn,
+.button-group-right button#ldev-send-btn,
+.button-group-right button#ldev-confirm-btn,
+.button-group-right button#ldev-reject-btn {
+    background-color: #3d3d6e;
+    color: #e0e0e0;
+}
+.button-group-right button[type="button"]:not([class]):hover,
+.button-group-right button#rc-save-btn:hover,
+.button-group-right button#fag-save-btn:hover,
+.button-group-right button#br-save-btn:hover,
+.button-group-right button#ldev-send-btn:hover,
+.button-group-right button#ldev-confirm-btn:hover,
+.button-group-right button#ldev-reject-btn:hover {
+    background-color: #4a4a8d;
+}
+
+.button-group-right .new-btn, .button-group-right .add-btn {
+    background-color: #50e3c2;
+    color: #1a1a2e;
+}
+.button-group-right .new-btn:hover, .button-group-right .add-btn:hover { background-color: #40c0a0; }
+
+.button-group-right .cancel-btn {
+    background-color: #ff8c42;
+    color: #1a1a2e;
+}
+.button-group-right .cancel-btn:hover { background-color: #e07030; }
+
+.button-group-right .update-btn {
+    background-color: #7a46c3;
+    color: white;
+}
+.button-group-right .update-btn:hover { background-color: #6a3aa0; }
+
+
+/* --- List Table (`.lreceptions`) --- */
+table.lreceptions {
+    width: calc(100% - 300px); /* Adjust this if you want the whole table narrower */
+    margin: 20px 60px;
+    border-collapse: collapse;
+    background-color: #282844;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid #4a4a6e;
+    table-layout: auto; /* Keeping default for list, or change to fixed and add column widths */
+}
+
+table.lreceptions th,
+table.lreceptions td {
+    padding: 12px 8px; /* Reduced horizontal padding for tighter cells */
+    border: 1px solid #3a3a5e;
+    text-align: left;
+    font-size: 0.88em;
+    color: #d0d0d0;
+}
+
+table.lreceptions th {
+    background-color: #0f3460;
+    color: #e0e0e0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid #50e3c2;
+}
+
+/* Zebra striping with a techy feel */
+table.lreceptions tbody tr:nth-child(even) {
+    background-color: #22223a;
+}
+
+table.lreceptions tbody tr:hover {
+    background-color: #3f3f6c;
+    cursor: pointer;
+}
+
+
+/* --- Responsive Adjustments --- */
+/*
+The media query for 992px was commented out, I've re-enabled it for completeness,
+but its contents might still need tuning based on specific device sizes.
+*/
+@media (max-width: 992px) {
+    ul.modules, ul,
+    .table-group-container,
+    table.lreceptions {
+        margin-left: 30px;
+        margin-right: 30px;
+        width: calc(100% - 60px);
+    }
+    ul.modules li a { padding: 12px 15px; }
+    ul li a { padding: 6px 10px; font-size: 0.8em; }
+    .reception-table td { padding: 10px 2px; font-size: 0.85em; } /* Adjusted padding here as well */
+    table.reception-table input { width: 100%; } /* Adjusted to 100% for responsiveness within cells */
+    .button-group-right button { font-size: 0.8em; padding: 8px 12px; min-width: 80px; }
+    table.lreceptions th, table.lreceptions td { padding: 10px 12px; font-size: 0.8em; }
+}
+
+@media (max-width: 768px) {
+    ul.modules, ul,
+    .table-group-container,
+    table.lreceptions {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: calc(100% - 20px);
+    }
+    ul.modules { justify-content: center; flex-direction: column; min-height: auto; border-bottom: none; box-shadow: none; }
+    ul.modules li { width: 100%; text-align: center; }
+    ul.modules li a { padding: 12px; border-bottom: 1px solid rgba(80, 227, 194, 0.2); }
+    ul.modules li:last-child a { border-bottom: none; }
+    ul { flex-direction: column; align-items: stretch; padding: 5px; }
+    ul li { margin: 3px 0; }
+    ul li a { padding: 10px; text-align: center; }
+    .table-group-container { flex-direction: column; gap: 15px; border: none; box-shadow: none; background-color: transparent; }
+    .table-group-container .reception-table { flex: 1 1 100%; margin-bottom: 0; border: 1px solid #4a4a6e; border-radius: 6px; padding: 10px; background-color: #282844; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .table-group-container .lreceptions { flex: 1 1 100%; margin-bottom: 0; border: 1px solid #4a4a6e; border-radius: 6px; padding: 10px; background-color: #282844; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+
+    .reception-table tr:first-child { display: none; }
+    .reception-table td { display: flex; flex-direction: column; width: 100%; text-align: left !important; padding: 5px 0; border: none; }
+    .reception-table td:last-child { padding-top: 10px; }
+    .reception-table td:first-child { font-weight: 400; color: #50e3c2; margin-bottom: 5px; }
+    table.reception-table input, table.reception-table button { width: 100%; max-width: 100px; margin: 5px 0; display: block; }
+    .button-group-right { position: static; display: flex; flex-direction: column; width: 100%; align-items: center; margin-top: 15px; padding-right: 0; }
+    .button-group-right button { margin: 0 auto 10px auto; width: 80%; max-width: 250px; }
+    table.lreceptions thead { display: none; }
+    table.lreceptions, table.lreceptions tbody, table.lreceptions tr, table.lreceptions td { display: block; width: 100%; }
+    table.lreceptions tr { margin-bottom: 15px; border: 1px solid #4a4a6e; border-radius: 6px; background-color: #282844; box-shadow: 0 2px 8px rgba(0,0,0,0.3); padding: 10px; }
+    table.lreceptions td { border: none; position: relative; padding-left: 45%; text-align: right; word-wrap: break-word; }
+    table.lreceptions td::before { content: attr(data-label); position: absolute; left: 0; width: 40%; padding-left: 10px; white-space: nowrap; text-align: left; font-weight: 600; color: #50e3c2; }
+}
+
+/* --- Keyframe Animations (Optional - for extra geeky feel) --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+body {
+    animation: fadeIn 0.5s ease-out;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Expédition</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH </a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="comptabilite.html">Opérations Courantes</a></li>
+            <li><a href="inventaire.html">Opérations non Courantes</a></li>
+            <li><a href="declaration.html">IS</a></li>
+            <li><a href="tableau-bord.html">Tableaux de bord</a></li>
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="comptabilite.html">Achats & Ventes</a></li>
+            <li><a href="comptabilite-reglement.html">Réglements</a></li>
+            <li><a href="comptabilite-paie.html">Paie</a></li>
+            <li><a href="comptabilite-tva.html">TVA et autres taxes</a></li>
+            <li><a href="immobilisations.html">Immobilisations</a></li>
+            <li><a href="banques.html">Banques</a></li>
+        </ul>
+        <table class="ecriture-comptable0">
+            <tr><th colspan="2">Nature d'opération</th><th colspan="2">Reglement au comptant</th><th colspan="2">Reglement LC/CREDOC</th><th>Remise LC</th><th colspan="2">Encaissement LC/CREDOC</th><th colspan="3">Décaissement LC</th><th colspan="2">Change</th></tr>
+            <tr><td>Achat</td><td>Vente<td>Espece</td><td>Chéque</td><td>Notification CREDOC</td><td>Notification LC</td><td>Remise à l'encaissement</td><td>Remise à l'escompte</td><td>Encaissement à l'échéance normale</td><td>Remboursement Escompte</td><td>Par la banque</td><td>En espéce</td><td>Ecart</td><td>Provision</td></tr>
+            <tr><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td><td><input type="checkbox" id="selector"></td></tr>
+        </table>
+        <div class="row-ecriture1">
+            <div class="column-ecr11">
+            <table class="ecriture-comptable">
+                <tr><th colspan="7">Ecriture Comptable N°</th></tr>
+                <tr><th></th><th colspan="3">Debit</th><th colspan="3">Credit</th></tr>
+                <tr><td>Date <td>Code</td><td>Libellé</td><td>Montant</td><td>Code</td><td>Libellé</td><td>Montant</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td>Libellé</td><td colspan="7"><input class="" id="reg-libel-input"></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="compt--btn">Comptabiliser</button></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="compt-modify-btn">Modifier</button></td></tr>
+                <tr><td colspan="7"><button class="add-btn" id="comt-save-btn">Enregistrer</button></td></tr>
+            </table>
+            </div>
+              <div class="column-ecr21">
+                <table class="lfactures">
+                    <tr><td>Date</td><td>N°Réglement/Remboursement</td><td>Type</td><td>Mode Paiment</td><td>Echéance</td><td>Action</td><td>N°Client/Fournisseur</td><td>Nom </td><td>Montant</td><td>Devise</td><td>Cours</td><td>Intérêts bancaires</td><td>Frais et Commissions</td><td>Services Bancaires</td><td>TVA</td><td>Net</td><td>Ecart de change</td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>Notifié</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><input type="checkbox" id="selector"></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>A remettre</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>A encaisser</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>Encaissé</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>-/+</td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td colspan="8">Pour les ecrats de conversion definitifs(le jour d'encaissement par la banque) on comptabilise l'écart on se referant au N°Fcature</td></tr>
+                    <tr><td colspan="8">Pour les autres operations(notifications,remise...) on comptabilise la provision </td></tr>
+
+                    <tr><td></td><td colspan="7">Total</td><td>-</td><td>-</td><td></td><td></td></tr>
+
+
+                </table>
+              </div>
+
+            </div>
+            <table class="ecriture-comptable">
+                <tr><td>N°Réglement</td><td>Montant<td>Inérêts bancaires</td><td>Frais et Commissions</td><td>Services Bancaires</td><td>TVA</td><td>Net à Recevoir/Payer</td></tr>
+                <tr><td></td><td></td><td><input class="" id="interet-reg-input"></td><td><input class="" id="frais-reg-input"></td><td><input class="" id="services-reg-input"></td><td></td><td></td><td><button class="add-btn" id="reg-save-btn">Enregistrer</button></td><td><button class="add-btn" id="reg-cancel-btn">Annuler</button></td></tr>
+            </table>
+
+    </body>
+</html>

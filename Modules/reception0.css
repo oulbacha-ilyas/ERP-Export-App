@@ -1,0 +1,543 @@
+/* --- Base Reset & Global Styles --- */
+body {
+    font-family: 'Consolas', 'Roboto Mono', 'Ubuntu Mono', monospace; /* Monospaced, techy font */
+    line-height: 1.6;
+    color: #e0e0e0; /* Light grey for text on dark backgrounds */
+    background-color: #1a1a2e; /* Deep, dark blue/purple background */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scroll due to potential overflows */
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* --- Navigation (Global) --- */
+ul.modules {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #0f3460; /* Slightly lighter deep blue for main nav */
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow for definition */
+    align-items: center;
+    min-height: 60px;
+    border-bottom: 2px solid #50e3c2; /* New vibrant accent line (Teal) */
+}
+
+ul.modules li {
+    margin: 0;
+}
+
+ul.modules li a {
+    color: #e0e0e0; /* Light text for links */
+    padding: 15px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    font-weight: 600; /* Bolder for main navigation */
+    text-transform: uppercase; /* Techy feel */
+    letter-spacing: 0.05em; /* Slightly spaced out letters */
+}
+
+ul.modules li a:hover {
+    background-color: #50e3c2; /* New Accent color on hover (Teal) */
+    color: #1a1a2e; /* Darker text on bright hover */
+}
+
+ul.modules li a.active-link {
+    background-color: #7a46c3; /* Distinct active state for main nav (Purple) */
+    color: #fff;
+    border-bottom: 3px solid #50e3c2; /* Underline with new accent color */
+    padding-bottom: 12px; /* Adjust padding due to underline */
+}
+
+/* Sub-navigation (your second UL) */
+ul { /* This targets all other ULs, including your second one */
+    list-style-type: none;
+    margin: 20px 150px 20px 60px;
+    padding: 7px;
+    background-color: #2e2e4e; /* Darker background for sub-nav */
+    border-radius: 6px; /* Subtle rounding */
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border: 1px solid #4a4a6e; /* Consistent border */
+}
+
+ul li {
+    display: inline-block;
+    padding: 0;
+    margin: 0 8px;
+}
+
+ul li a {
+    color: #a0a0a0; /* Softer grey for sub-nav links */
+    padding: 8px 15px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+ul li a:hover {
+    background-color: #7a46c3; /* Accent color for sub-nav hover (Purple) */
+    color: #fff;
+}
+
+ul li a.active-link {
+    background-color: #50e3c2; /* Primary accent for active sub-nav link (Teal) */
+    color: #1a1a2e; /* Darker text on bright active */
+    font-weight: bold;
+}
+
+/* --- Form Table (`.reception`) --- */
+table.reception {
+    width: calc(100% - 300px);
+    margin: 20px 60px;
+    border-collapse: collapse;
+    background-color: #282844; /* Darker background for form table */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Pronounced shadow */
+    border: 1px solid #4a4a6e; /* Stronger border for the table */
+}
+
+table.reception td {
+    padding: 12px 18px; /* More padding for spacious feel */
+    border: 1px solid #3a3a5e; /* Darker, more defined internal borders */
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.9em;
+    color: #d0d0d0; /* Slightly lighter text for labels */
+    white-space: nowrap;
+}
+
+/* Specific Table Header Cells within the form table */
+table.reception .th1,
+table.reception .th2,
+table.reception .th3 {
+    background-color: #0f3460; /* Unified darker header background */
+    color: #e0e0e0;
+    font-weight: 600;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.2em;
+    border-color: #50e3c2; /* Use main accent for header borders */
+    border-width: 0 1px 2px 1px; /* Thicker bottom border for separation */
+    text-transform: uppercase;
+}
+/* Reassigned header colors to new techy palette */
+table.reception .th1 { background-color: #50e3c2; border-color: #40c0a0; color: #1a1a2e;} /* Teal */
+table.reception .th2 { background-color: #7a46c3; border-color: #6a3aa0; color: #fff;} /* Purple */
+table.reception .th3 { background-color: #ff8c42; border-color: #e07030; color: #1a1a2e;} /* Orange/Amber */
+
+
+/* Input fields within the form table - INCREASED LENGTH */
+table.reception input[type="number"],
+table.reception input[type="text"],
+table.reception input[type="datetime"],
+table.reception input[type=""] {
+    /* Increased width for longer inputs */
+    width: 100px; /* Fixed width for consistency, adjust as needed */
+    max-width: calc(100% - 24px); /* Ensures it doesn't overflow its cell */
+    padding: 10px 12px;
+    border: 1px solid #5a5a7a; /* Lighter border for inputs */
+    background-color: #1f1f3a; /* Darker background for inputs */
+    color: #f0f0f0; /* Light text in inputs */
+    border-radius: 4px;
+    font-size: 0.9em;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+table.reception input:focus {
+    border-color: #50e3c2; /* New Accent on focus (Teal) */
+    box-shadow: 0 0 0 3px rgba(80, 227, 194, 0.4); /* Stronger glow */
+    outline: none;
+    background-color: #25254a; /* Slightly lighter on focus */
+}
+
+/* Buttons within the form table - Ensuring consistent styling */
+table.reception button {
+    border-radius: 4px;
+    padding: 10px 18px;
+    font-size: 0.88em;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+    margin-right: 0;
+    min-width: 130px; /* Give buttons more consistent width */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Stronger button shadow */
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+}
+
+table.reception button:hover {
+    transform: translateY(-2px); /* More pronounced lift */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+table.reception button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Default button style (for "Enregistrer") */
+table.reception button[type="button"]:not([class]),
+table.reception button#rc-save-btn,
+table.reception button#fag-save-btn,
+table.reception button#br-save-btn,
+table.reception button#ldev-send-btn,
+table.reception button#ldev-confirm-btn,
+table.reception button#ldev-reject-btn {
+    background-color: #3d3d6e; /* A new neutral, darker grey-purple */
+    color: #e0e0e0;
+}
+table.reception button[type="button"]:not([class]):hover,
+table.reception button#rc-save-btn:hover,
+table.reception button#fag-save-btn:hover,
+table.reception button#br-save-btn:hover,
+table.reception button#ldev-send-btn:hover,
+table.reception button#ldev-confirm-btn:hover,
+table.reception button#ldev-reject-btn:hover {
+    background-color: #4a4a8d; /* Lighter hover for neutral */
+}
+ /*ldev-send-btn ldev-confirm-btn ldev-reject-btn*/
+/* Redefined button colors for a techier palette */
+table.reception .new-btn, table.reception .add-btn {
+    background-color: #50e3c2; /* Teal for new/add */
+    color: #1a1a2e; /* Dark text for contrast */
+}
+table.reception .new-btn:hover, table.reception .add-btn:hover { background-color: #40c0a0; }
+
+table.reception .cancel-btn {
+    background-color: #ff8c42; /* Orange/Amber for cancel */
+    color: #1a1a2e; /* Dark text for contrast */
+}
+table.reception .cancel-btn:hover { background-color: #e07030; }
+
+table.reception .update-btn {
+    background-color: #7a46c3; /* Purple for update */
+    color: white;
+}
+table.reception .update-btn:hover { background-color: #6a3aa0; }
+
+
+/* --- List Table (`.lreceptions`) --- */
+table.lreceptions {
+    width: calc(100% - 300px);
+    margin: 20px 60px;
+    border-collapse: collapse;
+    background-color: #282844; /* Darker background for list table */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid #4a4a6e; /* Stronger border for the table */
+}
+
+table.lreceptions th,
+table.lreceptions td {
+    padding: 12px 15px;
+    border: 1px solid #3a3a5e; /* Darker, more defined internal borders */
+    text-align: left;
+    font-size: 0.88em; /* Slightly smaller for dense data */
+    color: #d0d0d0;
+}
+
+table.lreceptions th {
+    background-color: #0f3460; /* Dark blue for list table headers */
+    color: #e0e0e0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid #50e3c2; /* Accent line under headers (Teal) */
+}
+
+/* Zebra striping with a techy feel */
+table.lreceptions tbody tr:nth-child(even) {
+    background-color: #22223a; /* Slightly different dark shade */
+}
+
+table.lreceptions tbody tr:hover {
+    background-color: #3f3f6c; /* More noticeable hover effect */
+    cursor: pointer;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    ul.modules, ul,
+    table.reception, table.lreceptions {
+        margin-left: 30px; /* Reduced side margins for tablets */
+        margin-right: 30px;
+        width: calc(100% - 60px); /* Adjust width */
+    }
+
+    ul.modules li a {
+        padding: 12px 15px;
+    }
+
+    ul li a {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+
+    table.reception td {
+        padding: 10px 12px;
+        font-size: 0.85em;
+    }
+    /* Adjusted input width for tablets */
+    table.reception input {
+        width: 180px; /* Slightly shorter for tablets */
+    }
+    table.reception button {
+        font-size: 0.8em;
+        padding: 8px 12px;
+        min-width: 80px;
+    }
+
+    table.lreceptions th,
+    table.lreceptions td {
+        padding: 10px 12px;
+        font-size: 0.8em;
+    }
+}
+
+
+@media (max-width: 768px) {
+    ul.modules, ul,
+    table.reception, table.lreceptions {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: calc(100% - 20px);
+    }
+
+    ul.modules {
+        justify-content: center;
+        flex-direction: column; /* Stack main nav items */
+        min-height: auto;
+        border-bottom: none; /* Remove bottom border */
+        box-shadow: none; /* Remove shadow */
+    }
+    ul.modules li {
+        width: 100%; /* Full width for stacked items */
+        text-align: center;
+    }
+    ul.modules li a {
+        padding: 12px;
+        border-bottom: 1px solid rgba(80, 227, 194, 0.2); /* Subtle separator with new accent color */
+    }
+    ul.modules li:last-child a {
+        border-bottom: none;
+    }
+
+
+    ul {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 5px;
+    }
+
+    ul li {
+        margin: 3px 0;
+    }
+
+    ul li a {
+        padding: 10px;
+        text-align: center;
+    }
+
+    /* Form Table (`table.reception`) on Mobile - Stacked approach */
+    table.reception {
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+    }
+    table.reception tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #4a4a6e;
+        border-radius: 6px;
+        padding: 10px;
+        background-color: #282844;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    table.reception tr:first-child { /* The header row */
+        display: none; /* Hide the multi-column header on mobile as it won't stack well */
+    }
+    table.reception td {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: left !important;
+        padding: 5px 0;
+        border: none;
+    }
+
+    table.reception td:last-child {
+        padding-top: 10px;
+    }
+
+    table.reception td:first-child { /* Labels */
+        font-weight: 600;
+        color: #50e3c2; /* New Accent color for labels (Teal) */
+        margin-bottom: 5px;
+    }
+    table.reception td input, table.reception td button {
+        width: 30%; /* Make inputs/buttons truly full width of their containing flex item */
+        max-width: none; /* Remove max-width restriction */
+        margin: 5px 0;
+        display: block;
+    }
+
+
+    /* List Table (`table.lreceptions`) on Mobile */
+    table.lreceptions thead {
+        display: none; /* Hide table header on mobile for "card" view */
+    }
+    table.lreceptions, table.lreceptions tbody, table.lreceptions tr, table.lreceptions td {
+        display: block;
+        width: 100%;
+    }
+    table.lreceptions tr {
+        margin-bottom: 15px;
+        border: 1px solid #4a4a6e;
+        border-radius: 6px;
+        background-color: #282844;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        padding: 10px;
+    }
+    table.lreceptions td {
+        border: none;
+        position: relative;
+        padding-left: 45%;
+        text-align: right;
+        word-wrap: break-word;
+    }
+    table.lreceptions td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 40%;
+        padding-left: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+        color: #50e3c2; /* New Accent color for labels (Teal) */
+    }
+    /* Remember to add data-label attributes to your <td> elements in HTML for this to work! */
+}
+
+/* --- Keyframe Animations (Optional - for extra geeky feel) --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+body {
+    animation: fadeIn 0.5s ease-out; /* Subtle fade in on load */
+}
+
+/*new laouyt
+/* --- NEW CSS FOR THE LAYOUT --- */
+/* Add this to your reception.css file */
+
+.table-group-container {
+    /* This wrapper is the key. It will hold both tables. */
+    display: flex;
+    flex-wrap: wrap; /* Allows tables to wrap on smaller screens */
+    gap: 20px; /* Space between the two tables */
+    width: calc(100% - 300px); /* Maintain original width */
+    margin: 20px 150px; /* Maintain original margin */
+    position: relative; /* Make this the reference point for absolute button positioning */
+}
+
+/* Style for the individual tables inside the new container */
+.table-group-container .reception-table {
+    flex: 1 1 45%; /* Flex-grow, flex-shrink, basis. Allows tables to grow and fill space, but with a minimum basis of 45% */
+    border-collapse: collapse;
+    background-color: #282844;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid #4a4a6e;
+}
+
+/* The button group needs to be positioned relative to the new container */
+.button-group-right {
+    position: absolute;
+    top: 240px; /* You will still need to fine-tune this */
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 15px;
+}
+
+/* The headers now need individual styling since they are not in a single row */
+.reception-table .th1, .reception-table .th2 {
+    background-color: #0f3460;
+    color: #e0e0e0;
+    font-weight: 600;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.2em;
+    border-color: #50e3c2;
+    border-width: 0 1px 2px 1px;
+    text-transform: uppercase;
+}
+.reception-table .th1 { background-color: #50e3c2; border-color: #40c0a0; color: #1a1a2e; } /* Teal */
+.reception-table .th2 { background-color: #7a46c3; border-color: #6a3aa0; color: #fff; } /* Purple */
+
+.reception-table td {
+    padding: 12px 18px;
+    border: 1px solid #3a3a5e;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.9em;
+    color: #d0d0d0;
+    white-space: nowrap;
+}
+
+.reception-table input {
+    width: 250px;
+    max-width: calc(100% - 24px);
+    padding: 10px 12px;
+    border: 1px solid #5a5a7a;
+    background-color: #1f1f3a;
+    color: #f0f0f0;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Responsive adjustments for the new layout */
+@media (max-width: 768px) {
+    .table-group-container {
+        flex-direction: column; /* Stack tables on mobile */
+        gap: 15px; /* Spacing between stacked tables */
+        width: calc(100% - 20px);
+        margin: 20px 10px;
+    }
+    .table-group-container .reception-table {
+        flex: 1 1 100%; /* Take up full width on mobile */
+    }
+    .button-group-right {
+        position: static;
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 15px;
+        padding-right: 0;
+    }
+    .button-group-right button {
+        margin: 0 auto 10px auto;
+        width: 80%;
+        max-width: 250px;
+    }
+}

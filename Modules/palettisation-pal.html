@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="reception.css">
+        <title>Stock</title>
+    </head>
+    <body>
+        <ul class="modules">
+            <li><a href="reception-rcp.html">Réception</a></li>
+            <li><a href="devis-comd.html">Devis et Commandes</a></li>
+            <li><a href="stock-m.html">Stock</a></li>
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="expedition-prep.html">Expédition</a></li>
+            <li><a href="ventes.html">Vente</a></li>
+            <li><a href="qualite.html">Qualité</a></li>
+            <li><a href="comptabilite.html">Comptabilité</a></li>
+            <li><a href="ressourceshumaines.html">RH </a></li>
+
+        </ul>
+        <ul  class="sub-modules">
+            <li><a href="palettisation-pal.html">Palettisation</a></li>
+            <li><a href="palettisation-etiq.html">Etiquettage</a></li>
+
+        </ul>
+        <div class="table-group-container">
+        <table class="reception-table">
+              <tr><td class="th1" colspan="2">Création de nouvelles palettes</td></tr>
+              <tr><td>N°Versement :</td><td><input type="" id="n-ver-inp" size="12" value="V encore"><a></td></tr>
+              <tr><td>N°Palette :</td><td><input type="" id="n-pal-inp" size="12" ><a></td></tr>
+              <tr><td>Type Palette :</td><td><input type="" id="type-pal-inp" size="12"></td></tr>
+              <tr><td>N°Produit :</td><td><input type="" id="n-prd-inp" size="12"></td></tr>
+              <tr><td>Nom de Produit :</td><td><input type="" id="nom-prd-inp" size="12"></td></tr>
+              <tr><td>Type de Colis :</td><td><input type="" id="type-col-inp" size="12"></td></tr>
+              <tr><td>Nombre de Colis :</td><td><input type="" id="nbre-col-inp" size="12"></td></tr>
+              <tr><td>Poids commercial Colis:</td><td><input type="" id="pds-comcol-inp" size="12"></td></tr>
+              <tr><td>Poids brut :</td><td><input type="" id="pds-brut-inp" size="12"></td></tr>
+              <tr><td>Poids net :</td><td><input type="" id="pds-net-inp" size="12"></td></tr>
+              <tr><td>Date/Heure Palettisation :</td><td><input type="" id="dte-pal-inp" size="12"></td></tr>
+          </table>
+          <div class="button-group-right">
+              <button class="new-btn" type="button" onclick="" id="pal-add-btn">Ajouter</button>
+              <button type="button" onclick="" id="pal-cancel-btn">Annuler</button>
+              <button class="cancel-btn" type="button" onclick="" id="pal-print-btn">Imprimer</button>
+              <button class="cancel-btn" type="button" onclick="" id="pal-dupl-btn">Dupliquer</button>
+
+          </div>
+        </div>
+        <div class="table-group-container">
+        <table class="reception-table">
+            <tr><td class="th1" colspan="11">Liste des palettes</td></tr>
+            <tr><td colspan="2"></td><td colspan="2">Produit</td><td colspan="4">Colis</td><td colspan="3">Palette</td></tr>
+            <tr><td>N°Versement</td><td>N°Palette</td><td>Numéro</td><td>Nom </td><td>Nombre colis</td><td>Type colis</td><td>Poids brut</td><td>Poids commercial</td><td>Poids Brut</td><td>Poids Net</td><td>Conformité </td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>L'etiquettage precede la palettisation pour ne saisir que les palettes dejas completes et bien comptées</td></tr>
+            <tr><td colspan="7">Total</td><td>-</td><td></td><td></td><td></td></tr>
+
+        </table>
+      </div>
+
+
+        <div class="table-group-container">
+          <table class="reception-table">
+              <tr><td class="th1" colspan="2">Retours(Ecart)</td></tr>
+              <tr><td>N°Bon de retour                  :</td><td><input type="" id="n-ecart-inp" size="12" value="new"><a></td></tr>
+              <tr><td>N°Versement              :</td><td><input type="" id="n-ver-inp" size="12" value="encore" ><a></td></tr>
+              <tr><td>Type                     :</td><td><input type="" id="type-ecart-inp" size="12"></td></tr>
+              <tr><td>Quantité retournée           :</td><td><input type="" id="nbre-caisse-inp" size="12"></td></tr>
+              <tr><td>Motif de rejet               :</td><td><input type="" id="poids-brut-inp" size="12"></td></tr>
+              <tr><td>Date de retour                :</td><td><input type="" id="poids-net-inp" size="12"></td></tr>
+
+          </table>
+          <table class="reception-table">
+              <tr><td class="th2" colspan="2">Retours PF</td></tr>
+              <tr><td>N°Bon de retour                  :</td><td><input type="" id="n-ecart-inp" size="12" value="new"></td></tr>
+              <tr><td>N°Agrégation             :</td><td><input type="" id="n-ver-inp" size="12" value="encore" ><a></td></tr>
+              <tr><td>N°Colis 1:                     :</td><td><input type="" id="type-ecart-inp" size="12"></td></tr>
+              <tr><td>N°Colis 2           :</td><td><input type="" id="nbre-caisse-inp" size="12"></td></tr>
+              <tr><td>N°Colis 3              :</td><td><input type="" id="poids-brut-inp" size="12"></td></tr>
+              <tr><td>Qauntité retournée                :</td><td><input type="" id="poids-net-inp" size="12"></td></tr>
+              <tr><td>Motif de rejet                :</td><td><input type="" id="poids-net-inp" size="12"></td></tr>
+              <tr><td>Date de retour                :</td><td><input type="" id="poids-net-inp" size="12"></td></tr>
+
+          </table>
+          <div class="button-group-right">
+              <button class="new-btn" type="button" onclick="" id="pal-add-btn">Ajouter</button>
+              <button type="button" onclick="" id="pal-cancel-btn">Annuler</button>
+              <button class="cancel-btn" type="button" onclick="" id="pal-print-btn">Imprimer</button>
+              <button class="cancel-btn" type="button" onclick="" id="pal-dupl-btn">Dupliquer</button>
+
+          </div>
+        </div>
+        <div class="table-group-container">
+        <table class="reception-table">
+              <tr><td class="th2" colspan="11">Tableau de bord de Palettisation:</td></tr>
+              <tr><td>N°Versement</td><td>N°Produit :</td><td>Nom de Produit :</td><td>Nombre Palettes:</td><td>Nombre Colis</td><td>Poids Net:</td><td>Poids Dechets:</td><td>Pourcentage Dechets:</td><td>Poids Ecarts:</td><td>Pourcentage Ecarts:</td><td>Freinte : </td></tr>
+              <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td colspan="3">Total</td><td>-</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td colspan="6">Afficher les bons de retours à saisir selon le tableau selectionné</td></tr>
+
+          </table>
+          </div>
+    </body>
+</html>
