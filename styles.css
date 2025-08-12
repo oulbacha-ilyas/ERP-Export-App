@@ -69,7 +69,88 @@ body {
     border-radius: 0.5rem;
 }
 
+/* Custom styles for the modal */
+#docViewerModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    cursor: move;
+    border-radius: 0.5rem; /* rounded-lg */
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+    display: none; /* Initially hidden */
+    max-width: 90vw;
+    max-height: 90vh;
+}
 
+#docViewerModal.resizing {
+    cursor: nwse-resize;
+}
+
+#docViewerModal.dragging {
+    cursor: grabbing;
+}
+
+.resize-handle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    bottom: 0;
+    right: 0;
+    cursor: nwse-resize;
+    background-color: transparent;
+}
+
+/* Prevent the content inside the modal from being selected while dragging */
+.no-select {
+    user-select: none;
+}
+
+
+/*desvis sending model icon */
+/* --- Modal Styling for smooth transitions --- */
+.email-modal {
+    transition: visibility 0.3s ease;
+}
+.modal-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.modal-content {
+    /* Initial centering via transform */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+.modal-active .modal-overlay {
+    opacity: 1;
+}
+.modal-active .modal-content {
+    /* Remove transform when active to allow direct positioning */
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* Drag handle styling */
+.modal-header {
+    cursor: move;
+    user-select: none;
+}
+
+/* Resize handle styling */
+.resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 15px;
+    height: 15px;
+    cursor: nwse-resize;
+    background-color: transparent;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
     .sidebar {
