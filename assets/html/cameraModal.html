@@ -1,0 +1,63 @@
+<!-- This file contains the HTML for the camera modal component. -->
+<!-- It is designed to be dynamically loaded into other pages via JavaScript. -->
+<div id="camera-modal" class="flex flex-col bg-white border border-gray-300 rounded-lg shadow-xl hidden w-[700px] h-[500px]">
+    <!-- Draggable left handle -->
+    <div id="camera-modal-left-handle" class="absolute left-0 top-0 w-2 h-full cursor-move"></div>
+    <!-- Draggable right handle -->
+    <div id="camera-modal-right-handle" class="absolute right-0 top-0 w-2 h-full cursor-move"></div>
+
+    <!-- Modal Header for Dragging -->
+    <div id="camera-modal-header" class="flex justify-between items-center bg-gray-50 p-4 border-b border-gray-200 rounded-t-lg cursor-move no-select">
+        <h4 class="text-sm font-semibold text-gray-700">Appareil Photo</h4>
+        <!-- Close Button -->
+        <button id="close-camera-modal-btn" class="text-gray-500 hover:text-gray-900 transition-colors">
+            <!-- Close Icon (Source: Heroicons) -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Modal Content for Camera View -->
+    <div id="camera-modal-content" class="flex-grow p-4 overflow-hidden relative flex flex-col items-center justify-center">
+        <!-- Video feed from the webcam -->
+        <video id="camera-stream" class="w-full h-full max-w-full max-h-full rounded-lg" autoplay></video>
+        <!-- Hidden canvas to capture the photo -->
+        <canvas id="camera-canvas" class="hidden"></canvas>
+        <!-- Image tag to display the captured photo -->
+        <img id="captured-image" class="hidden w-full h-full max-w-full max-h-full rounded-lg" alt="Captured Photo">
+        <!-- Message for when camera access is denied -->
+        <div id="camera-error-message" class="hidden text-center text-red-500">
+            L'accès à la caméra a été refusé. Veuillez autoriser l'accès à la caméra pour utiliser cette fonctionnalité.
+        </div>
+
+        <!-- Analysis/Transcription Result Display -->
+        <div id="gemini-result-display" class="hidden absolute top-4 left-4 right-4 bg-white bg-opacity-90 p-4 rounded-lg shadow-lg overflow-y-auto max-h-4/5 text-sm text-gray-800">
+            <p id="gemini-result-text" class="text-justify"></p>
+            <div id="gemini-loading" class="hidden flex justify-center items-center py-4">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button controls -->
+    <div class="flex-shrink-0 p-4 border-t border-gray-200 flex justify-center items-center space-x-4">
+        <button id="capture-btn" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-full shadow-lg hover:bg-blue-700 transition-colors">
+            Prendre une photo
+        </button>
+        <button id="retake-btn" class="px-6 py-2 bg-gray-500 text-white font-medium rounded-full shadow-lg hover:bg-gray-600 transition-colors hidden">
+            Reprendre
+        </button>
+
+        <!-- Gemini AI Buttons -->
+        <button id="analyze-btn" class="px-6 py-2 bg-purple-600 text-white font-medium rounded-full shadow-lg hover:bg-purple-700 transition-colors hidden">
+            Analyser l'image ✨
+        </button>
+        <button id="transcribe-btn" class="px-6 py-2 bg-teal-600 text-white font-medium rounded-full shadow-lg hover:bg-teal-700 transition-colors hidden">
+            Transcrire le texte ✨
+        </button>
+    </div>
+    <div id="camera-modal-footer" class="flex justify-between items-center px-6 py-4 border-t border-gray-200"></div>
+    <!-- Resize Handle -->
+    <div id="camera-modal-resize-handle" class="camera-modal-resize-handle"></div>
+</div>

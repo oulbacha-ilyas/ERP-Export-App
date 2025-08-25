@@ -246,11 +246,10 @@ body {
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
     z-index: 1000;
-
 }
 
 /* Styling for the draggable header area */
-.shipping-modal-header {
+#shipping-modal-header {
     cursor: move;
     user-select: none;
 }
@@ -263,18 +262,16 @@ body {
     padding: 1.5rem;
     flex-grow: 1;
     overflow-y: auto;
-    user-select: none;
 }
 
 /* Container for the Leaflet map */
-.shipping-map-container {
+#shipping-map-container {
     height: 400px;
     width: 100%;
     border-radius: 0.5rem;
     overflow: hidden;
     margin-bottom: 1.5rem;
     border: 1px solid #e5e7eb;
-    user-select: none;
 }
 
 /* Basic table styles */

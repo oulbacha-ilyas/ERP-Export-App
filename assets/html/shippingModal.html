@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <!-- Leaflet JS -->
+    <!-- Include Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZQXllDrPaRAVcno+(\DaCBMBHZPk="
+        crossorigin=""></script>
+</head>
+
+<body class="bg-gray-100 font-sans">
+    <div class="shipping-modal-backdrop" id="shipping-modal-backdrop">
+    <div id="shippingModal" class="flex-col bg-white border border-gray-300 w-[800px] h-[600px] shadow-2xl rounded-lg overflow-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] transform-gpu">            <!-- Draggable left handle -->
+            <div id="shipping-modal-left-handle" class="absolute left-0 top-0 w-2 h-full cursor-move"></div>
+            <!-- Draggable right handle -->
+            <div id="shipping-modal-right-handle" class="absolute right-0 top-0 w-2 h-full cursor-move"></div>
+
+            <div id="shipping-modal-header" class="shipping-modal-header"
+                class="flex justify-between items-center px-6 py-4 border-b border-gray-200 cursor-move">
+                <h2 class="text-2xl font-bold text-gray-800">Shipping Details</h2>
+                <button id="close-modal-btn" class="close-btn text-gray-400 hover:text-gray-600 text-3xl">&times;</button>
+            </div>
+            <div class="modal-content-area">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">Live Shipment Map</h3>
+                <div id="shipping-map-container" class="shipping-map-container"></div>
+                <div class="relative overflow-x-auto shadow-md rounded-lg">
+                    <table id="shipping-data-table" class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Shipment ID</th>
+                                <th scope="col" class="px-6 py-3">Origin</th>
+                                <th scope="col" class="px-6 py-3">Destination</th>
+                                <th scope="col" class="px-6 py-3">Current Status</th>
+                                <th scope="col" class="px-6 py-3">Time Remaining</th>
+                            </tr>
+                        </thead>
+                        <tbody id="shipping-data-body"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="shipping-modal-footer" class="flex justify-between items-center px-6 py-4 border-t border-gray-200"></div>
+
+            <div class="shipping-modal-resize-handle" id="shipping-modal-resize-handle"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZQXllDrPaRAVcno+(\DaCBMBHZPk="
+        crossorigin=""></script>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>

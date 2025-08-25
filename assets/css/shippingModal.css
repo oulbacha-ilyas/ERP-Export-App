@@ -1,0 +1,82 @@
+/* Ensure Leaflet's CSS is loaded first, then override if necessary */
+@import url('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+
+/* Main modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    overflow: hidden;
+    resize: both; /* Allows the user to resize the modal */
+    overflow: auto; /* Ensures content inside is scrollable if needed */
+}
+
+/* Modal header for dragging */
+.modal-header {
+    cursor: move; /* Changes cursor to indicate it's draggable */
+    padding: 15px 20px;
+    background: #f1f1f1;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.close-btn {
+    font-size: 24px;
+    color: #aaa;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+/* Modal body layout */
+.modal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 60px); /* Subtract header height */
+    overflow: auto;
+}
+
+.tracking-table {
+    margin-bottom: 20px;
+}
+
+.tracking-table h3, .map-container h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Map container specific styles */
+.map-container {
+    flex-grow: 1;
+    min-height: 300px; /* Ensure map has a minimum height */
+    overflow: hidden;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+}

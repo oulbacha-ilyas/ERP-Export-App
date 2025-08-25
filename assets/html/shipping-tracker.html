@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Tracker</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base styles for the body, ensuring the app is centered and has a clean background */
+        body {
+            @apply font-sans bg-gray-100 flex items-center justify-center min-h-screen p-4;
+            overflow: hidden;
+        }
+
+        /* Styles for the main modal container */
+        #shippingModal {
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: none;
+            width: 100%;
+            height: 100%;
+            max-width: 900px;
+            max-height: 700px;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 400px;
+            min-height: 300px;
+            display: flex;
+        }
+
+        /* Backdrop to center the modal and create a visual separation */
+        .shipping-modal-backdrop {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        /* Styling for the draggable header area */
+        #shipping-modal-header {
+            cursor: move;
+            user-select: none;
+        }
+
+        /* Main content area of the modal with internal scrolling */
+        .modal-content-area {
+            padding: 1.5rem;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        /* Container for the Leaflet map */
+        #shipping-map-container {
+            height: 400px;
+            width: 100%;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Basic table styles */
+        #shipping-data-table {
+            width: 100%;
+            text-align: left;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        #shipping-data-table thead tr {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            color: #4b5563;
+            background-color: #f9fafb;
+        }
+
+        #shipping-data-table th,
+        #shipping-data-table td {
+            padding: 0.75rem 1.5rem;
+        }
+
+        /* Styles for the close button */
+        #shippingModal .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #9ca3af;
+            transition: color 0.2s ease;
+        }
+
+        #shippingModal .close-btn:hover {
+            color: #4b5563;
+        }
+
+        /* Styles for the resize handle in the bottom-right corner */
+        .shipping-modal-resize-handle {
+            width: 15px;
+            height: 15px;
+            background: rgba(0, 0, 0, 0.1);
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            cursor: se-resize;
+            border-top-left-radius: 10px;
+        }
+    </style>
+    <!-- Leaflet CSS for the map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <!-- Leaflet JS -->
+    <!-- Include Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZQXllDrPaRAVcno+(\DaCBMBHZPk="
+        crossorigin=""></script>
+</head>
+
+<body class="bg-gray-100 font-sans">
+    <div class="shipping-modal-backdrop" id="shipping-modal-backdrop">
+        <div id="shippingModal">
+            <!-- Modal Header (for dragging) -->
+            <div id="shipping-modal-header"
+                class="flex justify-between items-center px-6 py-4 border-b border-gray-200 cursor-move">
+                <h2 class="text-2xl font-bold text-gray-800">Shipping Details</h2>
+                <button class="close-btn text-gray-400 hover:text-gray-600 text-3xl"
+                    onclick="window.close()">&times;</button>
+            </div>
+            <div class="modal-content-area">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">Live Shipment Map</h3>
+                <div id="shipping-map-container"></div>
+                <div class="relative overflow-x-auto shadow-md rounded-lg">
+                    <table id="shipping-data-table" class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Shipment ID</th>
+                                <th scope="col" class="px-6 py-3">Origin</th>
+                                <th scope="col" class="px-6 py-3">Destination</th>
+                                <th scope="col" class="px-6 py-3">Current Status</th>
+                                <th scope="col" class="px-6 py-3">Time Remaining</th>
+                            </tr>
+                        </thead>
+                        <tbody id="shipping-data-body"></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- The new resize handle -->
+            <div class="shipping-modal-resize-handle" id="shipping-modal-resize-handle"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('shippingModal');
+            const mapContainer = document.getElementById('shipping-map-container');
+            const header = document.getElementById('shipping-modal-header');
+            const tableBody = document.getElementById('shipping-data-body');
+            const resizeHandle = document.getElementById('shipping-modal-resize-handle');
+
+            let mapInstance = null;
+            let currentMarkers = [];
+            let currentRoute = null;
+
+            let isDragging = false;
+            let dragOffset = { x: 0, y: 0 };
+            let isResizing = false;
+            let resizeStart = { x: 0, y: 0 };
+            let modalSize = { width: 0, height: 0 };
+
+            // Fictional Dynamic Data Table with accurate coordinates
+            const shippingData = [
+                {
+                    id: 'SHIP-001',
+                    origin: { name: 'San Francisco, CA', coords: [37.7749, -122.4194] },
+                    destination: { name: 'New York, NY', coords: [40.7128, -74.0060] },
+                    currentLocation: { name: 'Kansas City, MO', coords: [39.0997, -94.5786] },
+                    status: 'In Transit',
+                    timeRemaining: '12h',
+                    route: [
+                        [37.7749, -122.4194], [39.2921, -120.0824], [40.7608, -111.8910],
+                        [40.8136, -104.9877], [39.7392, -104.9903], [39.0997, -94.5786],
+                        [39.7617, -86.1581], [40.7128, -74.0060]
+                    ]
+                },
+                {
+                    id: 'SHIP-002',
+                    origin: { name: 'Los Angeles, CA', coords: [34.0522, -118.2437] },
+                    destination: { name: 'Dallas, TX', coords: [32.7767, -96.7970] },
+                    currentLocation: { name: 'Phoenix, AZ', coords: [33.4484, -112.0740] },
+                    status: 'Delayed',
+                    timeRemaining: '3h',
+                    route: [
+                        [34.0522, -118.2437], [33.4484, -112.0740], [32.7767, -96.7970]
+                    ]
+                },
+                {
+                    id: 'SHIP-003',
+                    origin: { name: 'Miami, FL', coords: [25.7617, -80.1918] },
+                    destination: { name: 'Seattle, WA', coords: [47.6062, -122.3321] },
+                    currentLocation: { name: 'Denver, CO', coords: [39.7392, -104.9903] },
+                    status: 'On Schedule',
+                    timeRemaining: '2d 6h',
+                    route: [
+                        [25.7617, -80.1918], [29.7604, -95.3698], [32.7767, -96.7970],
+                        [39.7392, -104.9903], [41.8781, -87.6298], [47.6062, -122.3321]
+                    ]
+                }
+            ];
+
+            /**
+             * Populates the shipping data table with dynamic data.
+             */
+            const populateShippingTable = () => {
+                if (tableBody) {
+                    tableBody.innerHTML = '';
+                    shippingData.forEach(item => {
+                        const row = document.createElement('tr');
+                        row.className = 'bg-white border-b hover:bg-gray-50 cursor-pointer';
+                        // Add a data attribute to link the row to its shipment ID
+                        row.dataset.shipmentId = item.id;
+                        row.innerHTML = `
+                            <td class="px-6 py-4 font-semibold">${item.id}</td>
+                            <td class="px-6 py-4">${item.origin.name}</td>
+                            <td class="px-6 py-4">${item.destination.name}</td>
+                            <td class="px-6 py-4">${item.status}</td>
+                            <td class="px-6 py-4">${item.timeRemaining}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                }
+            };
+
+            /**
+             * Clears all markers and polylines from the map.
+             */
+            const clearMap = () => {
+                currentMarkers.forEach(marker => mapInstance.removeLayer(marker));
+                currentMarkers = [];
+                if (currentRoute) {
+                    mapInstance.removeLayer(currentRoute);
+                    currentRoute = null;
+                }
+            };
+
+            /**
+             * Updates the map with a specific shipment's data.
+             * This function is now responsible for adding multiple markers and a route line.
+             * @param {object} shipment - The shipment data object.
+             */
+            const updateMap = (shipment) => {
+                // Clear any previous markers and routes
+                clearMap();
+
+                // Add marker for the current location (blue)
+                const currentLocationMarker = L.circleMarker(shipment.currentLocation.coords, {
+                    color: 'blue',
+                    fillColor: '#30a3ec',
+                    fillOpacity: 0.8,
+                    radius: 8
+                }).addTo(mapInstance).bindPopup(`<b>Current Location:</b> ${shipment.currentLocation.name}`);
+                currentMarkers.push(currentLocationMarker);
+
+                // Add markers for origin and destination (red)
+                const originMarker = L.marker(shipment.origin.coords, {
+                    title: 'Origin'
+                }).addTo(mapInstance).bindPopup(`<b>Origin:</b> ${shipment.origin.name}`);
+                const destinationMarker = L.marker(shipment.destination.coords, {
+                    title: 'Destination'
+                }).addTo(mapInstance).bindPopup(`<b>Destination:</b> ${shipment.destination.name}`);
+                currentMarkers.push(originMarker, destinationMarker);
+
+                // Draw a route line (Polyline)
+                currentRoute = L.polyline(shipment.route, { color: 'red', weight: 3, dashArray: '10, 5' }).addTo(mapInstance);
+
+                // Fit the map view to the bounds of all markers and the route line
+                const group = new L.featureGroup([...currentMarkers, currentRoute]);
+                mapInstance.fitBounds(group.getBounds());
+            };
+
+            /**
+             * Initializes the Leaflet map. If the map already exists, it only
+             * invalidates the size to ensure it redraws correctly after a modal resize.
+             */
+            const initMap = () => {
+                // If the map is already initialized, just update its size.
+                if (mapInstance) {
+                    mapInstance.invalidateSize();
+                    return;
+                }
+                // Try to initialize the map instance, handling potential errors if Leaflet is not loaded.
+                try {
+                    mapInstance = L.map(mapContainer, {
+                      center: [39.0997, -94.5786], // Initial view centered on the US
+                      zoom: 4,
+                      scrollWheelZoom: true
+                    });
+
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(mapInstance);
+
+                    // Call invalidateSize immediately after the map is initialized to ensure it draws correctly
+                    mapInstance.invalidateSize();
+
+                    // Display the first shipment by default
+                    if (shippingData.length > 0) {
+                        updateMap(shippingData[0]);
+                    }
+
+                } catch (e) {
+                    console.error('Failed to initialize map:', e);
+                }
+            };
+
+            /**
+             * Handles the start of a drag event on the modal header.
+             * @param {MouseEvent} e - The mouse event.
+             */
+            const dragStart = (e) => {
+                isDragging = true;
+                const rect = modal.getBoundingClientRect();
+                dragOffset.x = e.clientX - rect.left;
+                dragOffset.y = e.clientY - rect.top;
+                header.style.cursor = 'grabbing';
+            };
+
+            /**
+             * Handles the movement during a drag event.
+             * @param {MouseEvent} e - The mouse event.
+             */
+            const dragMove = (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.clientX - dragOffset.x;
+                const y = e.clientY - dragOffset.y;
+                modal.style.left = `${x}px`;
+                modal.style.top = `${y}px`;
+                modal.style.transform = 'none'; // Clear the initial transform
+            };
+
+            /**
+             * Handles the end of a drag event.
+             */
+            const dragEnd = () => {
+                isDragging = false;
+                header.style.cursor = 'grab';
+            };
+
+            /**
+             * Handles the start of a resize event.
+             * @param {MouseEvent} e - The mouse event.
+             */
+            const resizeStartHandler = (e) => {
+                isResizing = true;
+                resizeStart.x = e.clientX;
+                resizeStart.y = e.clientY;
+                modalSize.width = modal.offsetWidth;
+                modalSize.height = modal.offsetHeight;
+                e.preventDefault();
+            };
+
+            /**
+             * Handles the movement during a resize event.
+             * @param {MouseEvent} e - The mouse event.
+             */
+            const resizeMoveHandler = (e) => {
+                if (!isResizing) return;
+                const dx = e.clientX - resizeStart.x;
+                const dy = e.clientY - resizeStart.y;
+                const newWidth = modalSize.width + dx;
+                const newHeight = modalSize.height + dy;
+
+                const minWidth = 400;
+                const minHeight = 300;
+
+                modal.style.width = `${Math.max(newWidth, minWidth)}px`;
+                modal.style.height = `${Math.max(newHeight, minHeight)}px`;
+                // Crucial step: Invalidate the map size after resizing the modal
+                if (mapInstance) {
+                    mapInstance.invalidateSize();
+                }
+            };
+
+            /**
+             * Handles the end of a resize event.
+             */
+            const resizeEndHandler = () => {
+                isResizing = false;
+            };
+
+            // Set up all event listeners
+            header.addEventListener('mousedown', dragStart);
+            document.addEventListener('mousemove', dragMove);
+            document.addEventListener('mouseup', dragEnd);
+
+            resizeHandle.addEventListener('mousedown', resizeStartHandler);
+            document.addEventListener('mousemove', resizeMoveHandler);
+            document.addEventListener('mouseup', resizeEndHandler);
+
+            // Add click event listener to the table body for dynamic updates
+            tableBody.addEventListener('click', (e) => {
+                const row = e.target.closest('tr');
+                if (row && row.dataset.shipmentId) {
+                    const shipmentId = row.dataset.shipmentId;
+                    const selectedShipment = shippingData.find(item => item.id === shipmentId);
+                    if (selectedShipment) {
+                        updateMap(selectedShipment);
+                    }
+                }
+            });
+
+            // Call initial setup functions
+            populateShippingTable();
+            // Wrap map initialization in a window.onload event to ensure the DOM and map container are fully loaded
+            window.onload = function() {
+                initMap();
+            }
+        });
+    </script>
+</body>
+</html>

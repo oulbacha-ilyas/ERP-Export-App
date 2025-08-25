@@ -34,15 +34,15 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     Devis et Commandes
                 </a></li>
-                <li><a href="stock-m.html" class="module-link rounded-md">
+                <li><a href="stock-module.html" class="module-link rounded-md">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="2" ry="2"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
                     Stock
                 </a></li>
-                <li><a href="palettisation-pal.html" class="module-link rounded-md">
+                <li><a href="production-module.html" class="module-link rounded-md">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" x2="12" y1="22.01" y2="12"/></svg>
-                    Palettisation
+                    Production
                 </a></li>
-                <li><a href="expedition-prep.html" class="module-link rounded-md">
+                <li><a href="expédition-module.html" class="module-link rounded-md">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.74 1.74"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.74-1.74"/></svg>
                     Expédition
                 </a></li>
@@ -694,142 +694,7 @@
              </div>
         </div>
     </main>
+    <script src="assets/js/index.js" type="module"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // A helper function to manage tab states
-            function activateTab(tabs, contents, activeTabLink, activeContent, hideListTitle = false) {
-                tabs.forEach(t => {
-                    t.classList.remove('border-green-500', 'text-gray-900', 'font-medium');
-                    t.classList.add('border-transparent', 'text-gray-500');
-                });
-                activeTabLink.classList.add('border-green-500', 'text-gray-900', 'font-medium');
-                activeTabLink.classList.remove('border-transparent', 'text-gray-500');
-
-                contents.forEach(content => content.classList.add('hidden'));
-                if (activeContent) {
-                    activeContent.classList.remove('hidden');
-                }
-
-                const listesTitle = document.getElementById('listes-title');
-                if (hideListTitle) {
-                    listesTitle.classList.add('hidden');
-                } else {
-                    listesTitle.classList.remove('hidden');
-                }
-            }
-
-            function setupTopTabs() {
-                const topTabs = document.querySelectorAll('.top-tab-link');
-                const mainContents = document.querySelectorAll('.tab-content');
-                const listContents = document.querySelectorAll('.list-content');
-
-                topTabs.forEach(tab => {
-                    tab.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const mainContentId = this.getAttribute('href').substring(1) + '-content';
-                        const listContentId = this.getAttribute('href').substring(1) + '-lists-content';
-
-                        const activeMainContent = document.getElementById(mainContentId);
-                        const activeListContent = document.getElementById(listContentId);
-
-                        const hideListTitle = !activeListContent || activeListContent.children.length === 0;
-                        activateTab(topTabs, mainContents, this, activeMainContent, hideListTitle);
-                        activateTab(topTabs, listContents, this, activeListContent);
-
-                        // Special handling for the bottom tabs within 'Saisie des Réceptions'
-                        if (mainContentId === 'saisie-reception-content') {
-                            const receptionsListTab = document.getElementById('receptions-list-tab');
-                            if(receptionsListTab) {
-                                receptionsListTab.click();
-                            }
-                        }
-                    });
-                });
-            }
-
-            function setupBottomTabs() {
-                const bottomTabs = document.querySelectorAll('.bottom-tab-link');
-                const bottomTables = document.querySelectorAll('.bottom-tab-table');
-
-                bottomTabs.forEach(tab => {
-                    tab.addEventListener('click', function(e) {
-                        e.preventDefault();
-
-                        bottomTabs.forEach(t => {
-                            t.classList.remove('border-green-500', 'text-gray-900', 'font-medium');
-                            t.classList.add('border-transparent', 'text-gray-500');
-                        });
-                        this.classList.add('border-green-500', 'text-gray-900', 'font-medium');
-                        this.classList.remove('border-transparent', 'text-gray-500');
-
-                        bottomTables.forEach(table => {
-                            table.classList.add('hidden');
-                        });
-
-                        const targetId = this.getAttribute('href').substring(1) + '-table';
-                        const targetTable = document.getElementById(targetId);
-                        if (targetTable) {
-                            targetTable.classList.remove('hidden');
-                        }
-                    });
-                });
-            }
-
-            function setupInvoiceUploader() {
-                const fileInput = document.getElementById('invoice-file-input');
-                const viewerContainer = document.getElementById('invoice-viewer-container');
-                const imageViewer = document.getElementById('invoice-image-viewer');
-                const pdfViewer = document.getElementById('invoice-pdf-viewer');
-                const removeButton = document.getElementById('remove-file-button');
-                const placeholder = document.getElementById('placeholder-message');
-
-                fileInput.addEventListener('change', function() {
-                    const file = this.files[0];
-                    if (file) {
-                        const fileURL = URL.createObjectURL(file);
-                        viewerContainer.classList.remove('hidden');
-                        removeButton.classList.remove('hidden');
-                        placeholder.classList.add('hidden');
-
-                        if (file.type.startsWith('image/')) {
-                            imageViewer.src = fileURL;
-                            imageViewer.classList.remove('hidden');
-                            pdfViewer.classList.add('hidden');
-                        } else if (file.type === 'application/pdf') {
-                            pdfViewer.src = fileURL;
-                            pdfViewer.classList.remove('hidden');
-                            imageViewer.classList.add('hidden');
-                        } else {
-                            // Handle unsupported file types if needed
-                            alert('Format de fichier non pris en charge. Veuillez sélectionner une image ou un PDF.');
-                            removeFile();
-                        }
-                    }
-                });
-
-                removeButton.addEventListener('click', removeFile);
-
-                function removeFile() {
-                    fileInput.value = ''; // Clear the file input
-                    imageViewer.src = '';
-                    pdfViewer.src = '';
-                    viewerContainer.classList.add('hidden');
-                    removeButton.classList.add('hidden');
-                    placeholder.classList.remove('hidden');
-                    // Revoke the object URL to free up memory
-                    if (imageViewer.src) URL.revokeObjectURL(imageViewer.src);
-                    if (pdfViewer.src) URL.revokeObjectURL(pdfViewer.src);
-                }
-            }
-
-            setupTopTabs();
-            setupBottomTabs();
-            setupInvoiceUploader();
-
-            // Initial state: click the first tab to set everything up
-            document.getElementById('saisie-reception-tab').click();
-        });
-    </script>
 </body>
 </html>

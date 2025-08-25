@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Produce ERP - Stock</title>
+    <!-- Use Tailwind CSS and the custom stylesheet -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide icons for a clean look -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!--
+    CRITICAL FIX: Load the Leaflet CSS and JS here on the main page.
+    This ensures the global "L" object is available before any other scripts try to use it.
+    -->
+    <!-- Leaflet CSS for the map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <!-- Leaflet JS -->
+    <!-- Include Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-900">
+    <!-- Sidebar for Main Navigation - Identical to the dashboard -->
+    <aside class="sidebar p-4">
+        <div class="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2">
+            <span class="text-green-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-apple"><path d="M12 20.94a1.8 1.8 0 0 1-2.48.51c-1.39-1.2-2.18-2.6-3.13-4C5.17 14.76 4 13.11 4 11a4 4 0 0 1 8-2 4 4 0 0 1 8 2c0 2.11-1.17 3.76-2.39 5.45-1 1.39-1.79 2.79-3.13 4a1.8 1.8 0 0 1-2.48-.51z"/><path d="M10 2v3a1 1 0 0 1-2 0V2"/></svg>
+            </span>
+            <span>ERP System</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="module-link rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13.5V4a2 2 0 0 1 2-2h8.5L20 7.5V20a2 2 0 0 1-2 2h-5.5"/><polyline points="14 2 14 8 20 8"/><path d="M10 17a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M7 16.5v4.5"/><path d="M13 16.5v4.5"/></svg>
+                    Dashboard
+                </a></li>
+                <li><a href="reception-module.html" class="module-link rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    Réception
+                </a></li>
+                <li><a href="devis-commandes-module.html" class="module-link rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Devis et Commandes
+                </a></li>
+                <li><a href="stock-module.html" class="module-link  rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="2" ry="2"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
+                    Stock
+                </a></li>
+                <li><a href="production-module.html" class="module-link rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" x2="12" y1="22.01" y2="12"/></svg>
+                    Production
+                </a></li>
+                <li><a href="expédition-module.html" class="module-link active rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.74 1.74"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.74-1.74"/></svg>
+                    Expédition
+                </a></li>
+                <li><a href="ventes.html" class="module-link rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s2-4 10-4 10 4 10 4-2 4-10 4-10-4-10-4z"/><circle cx="12" cy="12" r="3"/></svg>
+                    Vente
+                </a></li>
+                <li><a href="qualite.html" class="module-link rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.07 4.93a10 10 0 0 1 0 14.14m-1.39 1.39a10 10 0 0 1-14.14 0m1.39-1.39a10 10 0 0 1 14.14 0m-1.39-1.39a10 10 0 0 1 0-14.14M5 19l14-14m-14 0l14 14"/></svg>
+                    Qualité
+                </a></li>
+                <li><a href="comptabilite.html" class="module-link rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 0 1-8-8c0-5.45 4.31-9.9 9.81-10c2.42-.04 4.8.78 6.64 2.27A10.3 10.3 0 0 1 22 10"/><path d="M2 13a10.32 10.32 0 0 0 5.25 8.85c1.45.82 3.12 1.25 4.85 1.15a12.83 12.83 0 0 0 5.48-1.54"/><path d="M16 14h6"/><path d="M19 11v6"/></svg>
+                    Comptabilité
+                </a></li>
+                <li><a href="ressourceshumaines.html" class="module-link rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Ressources Humaines
+                </a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <header class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-900">Expédition</h1>
+        </header>
+
+        <!-- Top-level navigation for different tasks -->
+        <nav class="bg-white p-4 rounded-lg card mb-6">
+            <ul class="flex space-x-4">
+                <li><a href="#préparation-expédition" id="préparation-expédition-tab" class="top-tab-link text-gray-900 font-medium hover:text-green-600 border-b-2 border-green-500">Préparation des expéditions</a></li>
+                <li><a href="#dédouanement-transit" id="dédouanement-transit-tab" class="top-tab-link text-gray-500 hover:text-gray-900 border-b-2 border-transparent">Dédouanement et Transit</a></li>
+                <li><a href="#suivi-expédition" id="suivi-expédition-tab" class="top-tab-link text-gray-500 hover:text-gray-900 border-b-2 border-transparent">Suivi des expéditions</a></li>
+            </ul>
+        </nav>
+
+        <!-- Top-level content sections container -->
+        <div id="tab-content-container">
+          <!-- Main table of préparation-expédition -->
+          <div id="préparation-expédition-content" class="tab-content">
+              <div class="bg-white p-6 rounded-lg card shadow-xl   mb-4">
+                  <div class="relative overflow-x-auto  overflow-y-auto max-h-60 rounded-lg border border-gray-200">
+                      <table class="w-full text-sm text-left text-gray-500">
+                          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                              <tr>
+                                  <!-- Checkbox for selection -->
+                                  <th scope="col" class="p-4">
+                                      <div class="flex items-center">
+                                          <input id="selectAll" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="selectAll" class="sr-only">Sélectionner tout</label>
+                                      </div>
+                                  </th>
+                                  <th scope="col" class="px-6 py-3">Date Réception</th>
+                                  <th scope="col" class="px-6 py-3">N°Bon de réception</th>
+                                  <th scope="col" class="px-6 py-3">N°Fournisseur</th>
+                                  <th scope="col" class="px-6 py-3">N°Article</th>
+                                  <th scope="col" class="px-6 py-3">Nom Article</th>
+                                  <th scope="col" class="px-6 py-3">Quantité Nette(Kg)</th>
+                                  <th scope="col" class="px-6 py-3">Temperature Entrée</th>
+                                  <th scope="col" class="px-6 py-3">Durée en stock</th>
+                                  <th scope="col" class="px-6 py-3">Temperature Estimée</th>
+                              </tr>
+                          </thead>
+                          <tbody id="stock-march-table-body">
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur A" data-email="fournisseurA@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-1" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur B" data-email="fournisseurB@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-2" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+          <!-- Main table of stock dédouanement-transit -->
+          <div id="dédouanement-transit-content" class="tab-content  hidden" >
+              <div class="bg-white p-6 rounded-lg card shadow-xl mb-4">
+                  <div class="relative overflow-x-auto  overflow-y-auto max-h-60 rounded-lg border border-gray-200" >
+                      <table class="w-full text-sm text-left text-gray-500">
+                          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                              <tr>
+                                  <!-- Checkbox for selection -->
+                                  <th scope="col" class="p-4">
+                                      <div class="flex items-center">
+                                          <input id="selectAll" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="selectAll" class="sr-only">Sélectionner tout</label>
+                                      </div>
+                                  </th>
+                                  <th scope="col" class="px-6 py-3">Date Réception</th>
+                                  <th scope="col" class="px-6 py-3">N°Bon de réception</th>
+                                  <th scope="col" class="px-6 py-3">N°Fournisseur</th>
+                                  <th scope="col" class="px-6 py-3">N°Article</th>
+                                  <th scope="col" class="px-6 py-3">Nom Article</th>
+                                  <th scope="col" class="px-6 py-3">Quantité Nette(Kg)</th>
+                                  <th scope="col" class="px-6 py-3">Temperature Entrée</th>
+                                  <th scope="col" class="px-6 py-3">Durée en stock</th>
+                                  <th scope="col" class="px-6 py-3">Temperature Estimée</th>
+                              </tr>
+                          </thead>
+                          <tbody id="saisie-stock-embAcc-table-body">
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur A" data-email="fournisseurA@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-1" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur B" data-email="fournisseurB@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-2" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur A" data-email="fournisseurA@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-1" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur B" data-email="fournisseurB@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-2" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+          <!-- Main table of stock suivi-expédition -->
+          <div id="suivi-expédition-content" class="tab-content  hidden" >
+              <div class="bg-white p-6 rounded-lg card shadow-xl mb-4">
+                  <div class="relative overflow-x-auto  overflow-y-auto max-h-60 rounded-lg border border-gray-200" >
+                      <table class="w-full text-sm text-left text-gray-500">
+                          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                              <tr>
+                                  <!-- Checkbox for selection -->
+                                  <th scope="col" class="p-4">
+                                      <div class="flex items-center">
+                                          <input id="selectAll" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="selectAll" class="sr-only">Sélectionner tout</label>
+                                      </div>
+                                  </th>
+                                  <th scope="col" class="px-6 py-3">Date Réception</th>
+                                  <th scope="col" class="px-6 py-3">N°Bon de réception</th>
+                                  <th scope="col" class="px-6 py-3">N°Fournisseur</th>
+                                  <th scope="col" class="px-6 py-3">N°Article</th>
+                                  <th scope="col" class="px-6 py-3">Nom Article</th>
+                                  <th scope="col" class="px-6 py-3">Quantité Nette(Kg)</th>
+                                  <th scope="col" class="px-6 py-3">Temperature Entrée</th>
+                                  <th scope="col" class="px-6 py-3">Durée en stock</th>
+                                  <th scope="col" class="px-6 py-3">Temperature Estimée</th>
+                              </tr>
+                          </thead>
+                          <tbody id="saisie-stock-embAcc-table-body">
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur A" data-email="fournisseurA@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-1" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur B" data-email="fournisseurB@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-2" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur A" data-email="fournisseurA@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-1" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur B" data-email="fournisseurB@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-2" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                              <tr class="bg-white border-b hover:bg-gray-50">
+                                  <td class="w-4 p-4">
+                                      <div class="flex items-center">
+                                          <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                          <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                      </div>
+                                  </td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                                  <td class="px-6 py-4">--</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <!-- Button to open the shipping modal. -->
+              <div id="open-shipping-btn" class="fixed top-4 right-4 z-50 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-colors cursor-pointer">
+                  <!-- Shipping Truck Icon (Source: Heroicons-like) -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 14l6-6m2 2l-6 6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v2M4 9h16" />
+                  </svg>
+              </div>
+          </div>
+          <!-- Buttons for expédition forms -->
+          <div class="flex justify-end gap-4 mb-6">
+              <button class="bg-blue-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                  Regrouper
+              </button>
+              <button class="bg-pink-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition-colors">
+                  Modifier
+              </button>
+              <button class="bg-yellow-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition-colors">
+                  Créer Devis
+              </button>
+          </div>
+        </div>
+
+        <!-- THE LISTES SECTION - This now dynamically changes its content based on the active main tab -->
+        <hr class="my-8 border-t border-gray-300" />
+        <h2 class="text-3xl font-bold text-gray-900 mb-4" id="listes-title">Listes</h2>
+
+        <div id="lists-container">
+            <!-- This container will hold the appropriate lists for the active main tab -->
+            <!-- Lists for préparation-expédition -->
+            <div id="préparation-expédition-lists-content" class="list-content">
+                <nav class="bg-white p-4 rounded-lg card mb-6">
+                    <ul class="flex space-x-4">
+                        <li><a href="#devis-exp-envoyés-list" id="devis-exp-envoyés-list-tab" class="bottom-tab-link text-gray-900 font-medium hover:text-green-600 border-b-2 border-green-500">Liste des devis envoyés</a></li>
+                        <li><a href="#devis-exp-recus-list" id="devis-exp-recus-list-tab" class="bottom-tab-link text-gray-900 font-medium hover:text-green-600 border-b-2 border-green-500">Liste des devis recus</a></li>
+                    </ul>
+                </nav>
+                <div id="devis-exp-envoyés-list-table" class="bottom-tab-table active-table">
+                    <!-- Main table of devis-exp-envoyés -->
+                    <div class="bg-white p-6 rounded-lg card shadow-xl">
+                        <!-- <h2 class="text-lg font-semibold text-gray-900 mb-4">Liste des Devis</h2>-->
+                        <div class="relative overflow-x-auto rounded-lg border border-gray-200">
+                          <table class="w-full text-sm text-left text-gray-500">
+                              <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                  <tr>
+                                      <!-- Checkbox for selection -->
+                                      <th scope="col" class="p-4">
+                                          <div class="flex items-center">
+                                              <input id="selectAll" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="selectAll" class="sr-only">Sélectionner tout</label>
+                                          </div>
+                                      </th>
+                                      <th scope="col" class="px-6 py-3">Date Réception</th>
+                                      <th scope="col" class="px-6 py-3">N°Bon de réception</th>
+                                      <th scope="col" class="px-6 py-3">N°Fournisseur</th>
+                                      <th scope="col" class="px-6 py-3">N°Article</th>
+                                      <th scope="col" class="px-6 py-3">Nom Article</th>
+                                      <th scope="col" class="px-6 py-3">Quantité Nette(Kg)</th>
+                                      <th scope="col" class="px-6 py-3">Temperature Entrée</th>
+                                      <th scope="col" class="px-6 py-3">Durée en stock</th>
+                                      <th scope="col" class="px-6 py-3">Temperature Estimée</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="devis-exp-envoyés-table-body">
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur A" data-email="fournisseurA@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-1" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur B" data-email="fournisseurB@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-2" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="devis-exp-recus-list-table" class="bottom-tab-table active-table">
+                    <!-- Main table of devis-exp-recus -->
+                    <div class="bg-white p-6 rounded-lg card shadow-xl">
+                        <!-- <h2 class="text-lg font-semibold text-gray-900 mb-4">Liste des Devis</h2>-->
+                        <div class="relative overflow-x-auto rounded-lg border border-gray-200">
+                          <table class="w-full text-sm text-left text-gray-500">
+                              <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                  <tr>
+                                      <!-- Checkbox for selection -->
+                                      <th scope="col" class="p-4">
+                                          <div class="flex items-center">
+                                              <input id="selectAll" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="selectAll" class="sr-only">Sélectionner tout</label>
+                                          </div>
+                                      </th>
+                                      <th scope="col" class="px-6 py-3">Date Réception</th>
+                                      <th scope="col" class="px-6 py-3">N°Bon de réception</th>
+                                      <th scope="col" class="px-6 py-3">N°Fournisseur</th>
+                                      <th scope="col" class="px-6 py-3">N°Article</th>
+                                      <th scope="col" class="px-6 py-3">Nom Article</th>
+                                      <th scope="col" class="px-6 py-3">Quantité Nette(Kg)</th>
+                                      <th scope="col" class="px-6 py-3">Temperature Entrée</th>
+                                      <th scope="col" class="px-6 py-3">Durée en stock</th>
+                                      <th scope="col" class="px-6 py-3">Temperature Estimée</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="devis-exp-recus-table-body">
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur A" data-email="fournisseurA@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-1" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur B" data-email="fournisseurB@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-2" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Lists for dédouanement-transit -->
+            <div id="dédouanement-transit-lists-content" class="list-content  hidden">
+                <nav class="bg-white p-4 rounded-lg card mb-6">
+                    <ul class="flex space-x-4">
+                        <li><a href="#dédouanement-transit-list" id="dédouanement-transit-list-tab" class="bottom-tab-link text-gray-900 font-medium hover:text-green-600 border-b-2 border-green-500">Liste dédouanement & Transit</a></li>
+                    </ul>
+                </nav>
+                <div id="dédouanement-transit-list-table" class="bottom-tab-table active-table">
+                    <!-- Main table of dédouanement-transit -->
+                    <div class="bg-white p-6 rounded-lg card shadow-xl">
+                        <div class="relative overflow-x-auto rounded-lg border border-gray-200">
+                          <table class="w-full text-sm text-left text-gray-500">
+                              <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                  <tr>
+                                      <!-- Checkbox for selection -->
+                                      <th scope="col" class="p-4">
+                                          <div class="flex items-center">
+                                              <input id="selectAll" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="selectAll" class="sr-only">Sélectionner tout</label>
+                                          </div>
+                                      </th>
+                                      <th scope="col" class="px-6 py-3">Date Réception</th>
+                                      <th scope="col" class="px-6 py-3">N°Bon de réception</th>
+                                      <th scope="col" class="px-6 py-3">N°Fournisseur</th>
+                                      <th scope="col" class="px-6 py-3">N°Article</th>
+                                      <th scope="col" class="px-6 py-3">Nom Article</th>
+                                      <th scope="col" class="px-6 py-3">Quantité Nette(Kg)</th>
+                                      <th scope="col" class="px-6 py-3">Temperature Entrée</th>
+                                      <th scope="col" class="px-6 py-3">Durée en stock</th>
+                                      <th scope="col" class="px-6 py-3">Temperature Estimée</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="dédouanement-transit-table-body">
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur A" data-email="fournisseurA@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-1" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur B" data-email="fournisseurB@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-2" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- Lists for suivi-expédition -->
+            <div id="suivi-expédition-lists-content" class="list-content hidden">
+                <nav class="bg-white p-4 rounded-lg card mb-6">
+                    <ul class="flex space-x-4">
+                        <li><a href="#suivi-expédition-list" id="suivi-expédition-list-tab" class="bottom-tab-link text-gray-900 font-medium hover:text-green-600 border-b-2 border-green-500">Liste des suivis des expéditions</a></li>
+                    </ul>
+                </nav>
+                <div id="suivi-expédition-list-table" class="bottom-tab-table active-table">
+                    <!-- Main table of suivi-expédition -->
+                    <div class="bg-white p-6 rounded-lg card shadow-xl">
+                        <div class="relative overflow-x-auto rounded-lg border border-gray-200">
+                          <table class="w-full text-sm text-left text-gray-500">
+                              <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                  <tr>
+                                      <!-- Checkbox for selection -->
+                                      <th scope="col" class="p-4">
+                                          <div class="flex items-center">
+                                              <input id="selectAll" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="selectAll" class="sr-only">Sélectionner tout</label>
+                                          </div>
+                                      </th>
+                                      <th scope="col" class="px-6 py-3">Date Réception</th>
+                                      <th scope="col" class="px-6 py-3">N°Bon de réception</th>
+                                      <th scope="col" class="px-6 py-3">N°Fournisseur</th>
+                                      <th scope="col" class="px-6 py-3">N°Article</th>
+                                      <th scope="col" class="px-6 py-3">Nom Article</th>
+                                      <th scope="col" class="px-6 py-3">Quantité Nette(Kg)</th>
+                                      <th scope="col" class="px-6 py-3">Temperature Entrée</th>
+                                      <th scope="col" class="px-6 py-3">Durée en stock</th>
+                                      <th scope="col" class="px-6 py-3">Temperature Estimée</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="suivi-expédition-table-body">
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur A" data-email="fournisseurA@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-1" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur B" data-email="fournisseurB@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-2" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                                  <tr class="bg-white border-b hover:bg-gray-50">
+                                      <td class="w-4 p-4">
+                                          <div class="flex items-center">
+                                              <input type="checkbox" data-name="Fournisseur C" data-email="fournisseurC@example.com" class="row-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                              <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                          </div>
+                                      </td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                      <td class="px-6 py-4">--</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </main>
+    <script src="assets/js/index.js" type="module"></script>
+
+</body>
+</html>
