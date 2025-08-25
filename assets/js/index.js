@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const openCameraBtn = document.getElementById('open-camera-btn');
     if (openCameraBtn) {
         openCameraBtn.addEventListener('click', async () => {
-            const cameraModal = await loadComponentAndSetup('camera-modal', '/assets/html/cameraModal.html', setupCameraModal);
+            const cameraModal = await loadComponentAndSetup('camera-modal', './assets/html/cameraModal.html', setupCameraModal);
             cameraModal.open();
         });
     }
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const openDocViewerBtn = document.getElementById('open-viewer-btn');
     if (openDocViewerBtn) {
         openDocViewerBtn.addEventListener('click', async () => {
-            const docViewerModal = await loadComponentAndSetup('docViewerModal', '/assets/html/docViewerModal.html', setupDocViewerModal);
+            const docViewerModal = await loadComponentAndSetup('docViewerModal', './assets/html/docViewerModal.html', setupDocViewerModal);
             docViewerModal.open();
         });
     }
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //const shippingModal = document.getElementById('shippingModal');
     if (openShippingBtn) {
         openShippingBtn.addEventListener('click', async () => {
-            const shippingModal = await loadComponentAndSetup('shippingModal', '/assets/html/shippingModal.html', setupShippingModal);
+            const shippingModal = await loadComponentAndSetup('shippingModal', './assets/html/shippingModal.html', setupShippingModal);
             shippingModal.open();
         });
     } else {console.log("modal already loaded! No overload allowed for this modal")}
